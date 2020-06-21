@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeeManga", "SeeManga\SeeManga.csproj", "{B323673E-A016-424D-A8B2-ECBBFDA7455A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B323673E-A016-424D-A8B2-ECBBFDA7455A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B323673E-A016-424D-A8B2-ECBBFDA7455A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B323673E-A016-424D-A8B2-ECBBFDA7455A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B323673E-A016-424D-A8B2-ECBBFDA7455A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A6F184A4-5F1A-40B9-B6F7-57B60F9BD5CD}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<SeeManga.Models.DTOManga>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Mangás</h1>
+
+<div class="container">
+    <div class="empty-space"></div>
+
+    @Html.ActionLink("Adicionar Novo mangá", "AdicionarManga", "Mangas", null, new { @class = "btn btn-primary", @type = "button" })
+
+    <div class="empty-space"></div>
+    <div class="empty-space"></div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ID_MANGA)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TITULO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SINOPSE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CAPA)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ID_SITUACAO)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID_MANGA)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TITULO)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SINOPSE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CAPA)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID_SITUACAO)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                @Html.DisplayText("Seu banco de dados ainda não tem nenhum mangá, adicione um!")
+            }
+        </tbody>
+    </table>
+</div>

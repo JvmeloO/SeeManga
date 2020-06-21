@@ -1,0 +1,43 @@
+﻿@model SeeManga.Models.DTOManga
+
+@{
+    ViewData["Title"] = "AdicionarManga";
+}
+
+<h1>Adicionar Manga</h1>
+<div class="empty-space"></div>
+
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("AdicionarManga", "Mangas")) { 
+            <div class="form-group">
+                @Html.LabelFor(t => t.TITULO, new { @class = "control-label" } )
+                @Html.TextBoxFor(t => t.TITULO, new { @class = "form-control" })
+                @Html.ValidationMessageFor(t => t.TITULO, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(s => s.SINOPSE, new { @class = "control-label" })
+                @Html.TextAreaFor(s => s.SINOPSE, new { @class = "form-control" })
+                @Html.ValidationMessageFor(s => s.SINOPSE, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label asp-for="CAPA" class="control-label"></label>
+                <input asp-for="CAPA" class="form-control" />
+                <span asp-validation-for="CAPA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(s => s.ID_SITUACAO, new { @class = "control-label" })
+                @Html.DropDownListFor(s => s.ID_SITUACAO, null)
+                @Html.ValidationMessageFor(s => s.ID_SITUACAO, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+            }
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
