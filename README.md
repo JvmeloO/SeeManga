@@ -1,7 +1,7 @@
 # SeeManga
 Sua biblioteca pessoal de mangás.
 
-# Oque é?
+# O que é?
 SeeManga é uma aplicação web feito para organizar, ler e guardar seus mangás em um banco de dados local.
 
 # Tecnologias
@@ -9,6 +9,7 @@ SeeManga é uma aplicação web feito para organizar, ler e guardar seus mangás
 - SQL Server
 - HTML, Web Pages Razor e CSS 
 - Webservices
+- Javascript
 
 
 
