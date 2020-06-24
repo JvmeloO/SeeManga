@@ -4,40 +4,40 @@
     ViewData["Title"] = "AdicionarManga";
 }
 
-<h1>Adicionar Manga</h1>
-<div class="empty-space"></div>
+<div class="container">
+    <h1>Adicionar Manga</h1>
+    <div class="empty-space"></div>
 
-<div class="row">
-    <div class="col-md-4">
-        @using (Html.BeginForm("AdicionarManga", "Mangas")) { 
-            <div class="form-group">
-                @Html.LabelFor(t => t.TITULO, new { @class = "control-label" } )
-                @Html.TextBoxFor(t => t.TITULO, new { @class = "form-control" })
-                @Html.ValidationMessageFor(t => t.TITULO, null, new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(s => s.SINOPSE, new { @class = "control-label" })
-                @Html.TextAreaFor(s => s.SINOPSE, new { @class = "form-control" })
-                @Html.ValidationMessageFor(s => s.SINOPSE, null, new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                <label asp-for="CAPA" class="control-label"></label>
-                <input asp-for="CAPA" class="form-control" />
-                <span asp-validation-for="CAPA" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(s => s.ID_SITUACAO, new { @class = "control-label" })
-                @Html.DropDownListFor(s => s.ID_SITUACAO, null)
-                @Html.ValidationMessageFor(s => s.ID_SITUACAO, null, new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-            }
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="AdicionarManga" asp-controller="Mangas" 
+                  method="post" 
+                  data-ajax="true">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="TITULO" class="control-label">Titulo</label>
+                    <input asp-for="TITULO" class="form-control" />
+                    <span asp-validation-for="TITULO" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SINOPSE" class="control-label">Sinopse</label>
+                    <input asp-for="SINOPSE" class="form-control" />
+                    <span asp-validation-for="SINOPSE" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CAPA" class="control-label">Capa</label>
+                    <input asp-for="CAPA" class="form-control-file" />
+                    <span asp-validation-for="CAPA" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ID_SITUACAO" class="control-label"></label>
+                    <input asp-for="ID_SITUACAO" class="form-control" />
+                    <span asp-validation-for="ID_SITUACAO" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-

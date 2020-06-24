@@ -59,9 +59,11 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    font-family: 'MuseoModerno', cursive;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -74,35 +76,76 @@ body {
 /*CSS SeeManga*/
 
 .page-home {
-    position: center;
-    padding-top: 16%;
+    background: rgb(34,193,195);
+    background: linear-gradient(4deg, rgba(34,193,195,1) 0%, rgba(124,185,232,1) 49%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
 }
+    .page-home div {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 35%;
+        left: 40%;
+        margin-top: -50px;
+        margin-left: -50px;
+    }
 
     .page-home h1 {
-        font-family: 'Ubuntu', sans-serif;
-        font-size: 100px;
+        color: white;
+        font-family: 'MuseoModerno', cursive;
+        font-size: 60px;
     }
 
     .page-home p {
-        font-family: 'Ubuntu', sans-serif;
+        color: white;
+        font-family: 'MuseoModerno', cursive;
         font-size: 20px;
     }
 
-.background-logo {
-    font-family: 'Ubuntu', sans-serif;
-    background: url('../img/olho.png') no-repeat center;
+    .page-home a {
+        color: white;
+        font-family: 'MuseoModerno', cursive;
+        font-size: 20px;
+    }
+
+    .page-home h2 {
+        color: white;
+        font-family: 'MuseoModerno', cursive;
+        font-size: 40px;
+        padding: 2%;
+        padding-left: 17%;
+    }
+
+.background-NoContentdb {
+    opacity: .50;
 }
 
-.form {
-    margin: 80px auto;
-    padding: 64px;
-    max-width: 730px;
-    background: #FFF;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-}
+    .background-NoContentdb img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .background-NoContentdb p {
+        height: auto;
+        font-size: 4vh;
+    }
 
 .empty-space {
     padding-top: 2%;
+}
+
+.square {
+   width: 80%;
+   height: 30%;
+   border-color: black;
+   border-width: 2px;
+   border-style: solid;
+   border-radius: 50px;
 }

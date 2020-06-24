@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SeeManga.Models
 {
-    public class DTOPaginas
+    public class DTOPagina
     {
         [Key]
         public int ID_PAGINAS { get; set; }

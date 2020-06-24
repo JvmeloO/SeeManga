@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace SeeManga.Models
 {
-    public class DTOSeguir
+    public class DTOComentario
     {
         [Key]
-        public int ID_SEGUIR { get; set; }
+        public int ID_COMENTARIOS { get; set; }
+
+        [Required]
+        [MaxLength(500)]
+        public string COMENTARIO { get; set; }
 
         [Required]
         public int ID_USUARIO { get; set; }
@@ -17,10 +21,8 @@ namespace SeeManga.Models
         [Required]
         public int ID_MANGA { get; set; }
 
-        //public virtual UsuarioModel Usuario { get; set; }
+        //public UsuarioModel Usuario { get; set; }
 
-        //public virtual MangaModel Manga { get; set; }
-
-        //public ICollection<NotificacoesModel> notificacoes { get; set; }
+        //public MangaModel Manga { get; set; }
     }
 }

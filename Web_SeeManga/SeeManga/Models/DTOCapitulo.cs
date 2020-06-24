@@ -6,23 +6,22 @@ using System.Threading.Tasks;
 
 namespace SeeManga.Models
 {
-    public class DTOComentarios
+    public class DTOCapitulo
     {
         [Key]
-        public int ID_COMENTARIOS { get; set; }
+        public int ID_CAPITULOS { get; set; }
 
         [Required]
-        [MaxLength(500)]
-        public string COMENTARIO { get; set; }
+        public int NUMERO { get; set; }
 
         [Required]
-        public int ID_USUARIO { get; set; }
+        public int QT_CAPITULOS { get; set; }
 
         [Required]
         public int ID_MANGA { get; set; }
 
-        //public UsuarioModel Usuario { get; set; }
+        //public virtual MangaModel Manga { get; set; }
 
-        //public MangaModel Manga { get; set; }
+        //public virtual ICollection<PaginasModel> Paginas { get; set; }
     }
 }

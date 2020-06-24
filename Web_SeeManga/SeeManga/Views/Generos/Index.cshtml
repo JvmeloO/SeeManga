@@ -1,0 +1,91 @@
+﻿@model SeeManga.Models.Model.MangaGenerosModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <h1>Gêneros</h1>
+
+    <div class="empty-space"></div>
+
+    <div class="row" id="Teste">
+        <div class="col-md-4">
+            <form asp-action="AdicionarGenero" asp-controller="Generos"
+                  method="post"
+                  data-ajax="true"
+                  data-ajax-update="#teste">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="dtoGenero.NM_GENERO" class="control-label">Gênero</label>
+                    <input asp-for="dtoGenero.NM_GENERO" class="form-control" />
+                    <span asp-validation-for="dtoGenero" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Adicionar Gênero" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4" style="padding-left: 50px">
+            <span style="font-weight: bold">
+            Gêneros são categorias ou classificações que distinguem
+            os temas, como Romance, Drama, Ação e etc.<br />
+            Não é possível cadastrar um mangá sem um Gênero.</span>
+        </div>
+    </div>
+
+    <div id="teste"></div>
+
+    <div>
+        <a asp-action="Index" asp-controller="Mangas">Voltar</a>
+    </div>
+
+    <div class="empty-space"></div>
+    <div class="empty-space"></div>
+    @if (Model.listDTOGenero != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <span>Código Do Genero</span>
+                    </th>
+                    <th>
+                        <span>Genero</span>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.listDTOGenero)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(i => item.ID_GENERO)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(n => item.NM_GENERO)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <text>
+            <div class="empty-space"></div>
+            <h1>Todos Gêneros</h1>
+            <hr />
+            <div class="background-NoContentdb">
+                <p>Nenhum gênero cadastrado no banco de dados!</p>
+                <img src="~/img/NoContent.png" />
+            </div>
+        </text>
+    }
+</div>

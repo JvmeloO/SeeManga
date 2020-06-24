@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace SeeManga.Models
 {
-    public class DTONotificacoes
+    public class DTOSituacao
     {
         [Key]
-        public int ID_NOTIFICACOES { get; set; }
+        public int ID_SITUACAO { get; set; }
 
         [Required]
-        public int ID_SEGUIR { get; set; }
+        [MaxLength(30)]
+        public string SITUACAO { get; set; }
 
-        //public SeguirModel Seguir { get; set; }
+        //public virtual ICollection<MangaModel> Manga { get; set; }
     }
 }

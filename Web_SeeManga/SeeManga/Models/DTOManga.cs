@@ -25,12 +25,15 @@ namespace SeeManga.Models
         [Required]
         public int ID_SITUACAO { get; set; }
 
-    //    public virtual SituacoesModel Situacoes { get; set; }
+        [Required]
+        public int ID_GENERO { get; set; }
 
-    //    public virtual ICollection<CapitulosModel> Capitulos { get; set; }
+        //    public virtual SituacoesModel Situacoes { get; set; }
 
-    //    public virtual ICollection<ComentariosModel> Comentarios { get; set; }
+        //    public virtual ICollection<CapitulosModel> Capitulos { get; set; }
 
-    //    public virtual ICollection<SeguirModel> Seguir { get; set; }
+        //    public virtual ICollection<ComentariosModel> Comentarios { get; set; }
+
+        //    public virtual ICollection<SeguirModel> Seguir { get; set; }
     }
 }

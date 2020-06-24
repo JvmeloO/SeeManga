@@ -469,3 +469,4 @@ C:\Users\jvmel\source\SeeManga\API_SeeManga\API_SeeManga\obj\Debug\netcoreapp3.1
 C:\Users\jvmel\source\SeeManga\API_SeeManga\API_SeeManga\obj\Debug\netcoreapp3.1\staticwebassets\API_SeeManga.StaticWebAssets.Manifest.cache
 C:\Users\jvmel\source\SeeManga\API_SeeManga\API_SeeManga\obj\Debug\netcoreapp3.1\staticwebassets\API_SeeManga.StaticWebAssets.xml
 C:\Users\jvmel\source\SeeManga\API_SeeManga\API_SeeManga\obj\Debug\netcoreapp3.1\API_SeeManga.genruntimeconfig.cache
+C:\Users\jvmel\source\SeeManga\API_SeeManga\API_SeeManga\obj\Debug\netcoreapp3.1\API_SeeManga.csprojAssemblyReference.cache

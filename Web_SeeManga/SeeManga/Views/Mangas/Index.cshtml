@@ -1,42 +1,56 @@
 ﻿@model IEnumerable<SeeManga.Models.DTOManga>
 
+<link href="~/img/NoContent.png" />
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Mangás</h1>
-
 <div class="container">
+    <h1>Mangás</h1>
     <div class="empty-space"></div>
 
-    @Html.ActionLink("Adicionar Novo mangá", "AdicionarManga", "Mangas", null, new { @class = "btn btn-primary", @type = "button" })
+    <div class="empty-space"></div>
+
+    <div class="row">
+        <div class="col-sm">
+            <a asp-action="AdicionarManga" asp-controller="Mangas" class="btn btn-primary" type="button">Adicionar Novo mangá</a>
+            <div class="empty-space"></div>
+        </div>
+        <div class="col-sm">
+            <a asp-action="Index" asp-controller="Generos" class="btn btn-primary" type="button">Adicionar Novo Genero</a>
+            <div class="empty-space"></div>
+        </div>
+        <div class="col-sm">
+            <a asp-action="" asp-controller="" class="btn btn-primary" type="button">Adicionar Nova Situação</a>
+            <div class="empty-space"></div>
+        </div>
+    </div>
 
     <div class="empty-space"></div>
     <div class="empty-space"></div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ID_MANGA)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TITULO)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SINOPSE)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CAPA)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ID_SITUACAO)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model != null)
-            {
+    @if (Model != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ID_MANGA)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TITULO)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SINOPSE)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CAPA)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ID_SITUACAO)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
@@ -62,11 +76,20 @@
                         </td>
                     </tr>
                 }
-            }
-            else
-            {
-                @Html.DisplayText("Seu banco de dados ainda não tem nenhum mangá, adicione um!")
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <text>
+            <div class="empty-space"></div>
+            <h1>Todos Mangás</h1>
+            <hr />
+            <div class="background-NoContentdb">
+                <p>Nenhum mangá cadastrado no banco de dados!</p>
+                <img src="~/img/NoContent.png" />
+            </div>
+        </text>
+    }
 </div>
+
