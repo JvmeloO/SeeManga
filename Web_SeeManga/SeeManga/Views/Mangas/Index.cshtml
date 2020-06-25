@@ -20,13 +20,16 @@
             <div class="empty-space"></div>
         </div>
         <div class="col-sm">
-            <a asp-action="" asp-controller="" class="btn btn-primary" type="button">Adicionar Nova Situação</a>
+            <a asp-action="Index" asp-controller="Situacoes" class="btn btn-primary" type="button">Adicionar Nova Situação</a>
             <div class="empty-space"></div>
         </div>
     </div>
 
     <div class="empty-space"></div>
     <div class="empty-space"></div>
+    <div class="empty-space"></div>
+    <h1>Todos Mangás</h1>
+    <hr />
     @if (Model != null)
     {
         <table class="table">
@@ -82,9 +85,6 @@
     else
     {
         <text>
-            <div class="empty-space"></div>
-            <h1>Todos Mangás</h1>
-            <hr />
             <div class="background-NoContentdb">
                 <p>Nenhum mangá cadastrado no banco de dados!</p>
                 <img src="~/img/NoContent.png" />

@@ -89,36 +89,38 @@ body {
         height: 100px;
         position: absolute;
         top: 35%;
-        left: 40%;
+        left: 18%;
         margin-top: -50px;
         margin-left: -50px;
     }
 
     .page-home h1 {
         color: white;
-        font-family: 'MuseoModerno', cursive;
         font-size: 60px;
     }
 
     .page-home p {
         color: white;
-        font-family: 'MuseoModerno', cursive;
         font-size: 20px;
     }
 
     .page-home a {
         color: white;
-        font-family: 'MuseoModerno', cursive;
         font-size: 20px;
     }
 
     .page-home h2 {
         color: white;
-        font-family: 'MuseoModerno', cursive;
+        font-weight: bold;
         font-size: 40px;
-        padding: 2%;
-        padding-left: 17%;
+        padding: 1.2%;
+        padding-left: 11.7%;
     }
+
+.logo {
+    font-weight: bold;
+    font-size: 40px;
+}
 
 .background-NoContentdb {
     opacity: .50;

@@ -1,40 +1,36 @@
-﻿@model SeeManga.Models.Model.MangaGenerosModel
+﻿@model SeeManga.Models.Model.MangaSituacoesModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
 <div class="container">
-    <h1>Gêneros</h1>
-
-    <div class="empty-space"></div>
-
-    <div class="row" id="Teste">
+    <h1>Situações</h1>
+    <hr />
+    <div class="row">
         <div class="col-md-4">
-            <form asp-action="AdicionarGenero" asp-controller="Generos"
+            <form asp-action="AdicionarSituacao" asp-controller="Situacoes"
                   method="post"
-                  data-ajax="true"
-                  data-ajax-update="#teste">
+                  data-ajax="true">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="dtoGenero.NM_GENERO" class="control-label">Gênero</label>
-                    <input asp-for="dtoGenero.NM_GENERO" class="form-control" />
-                    <span asp-validation-for="dtoGenero.NM_GENERO" class="text-danger"></span>
+                    <label asp-for="dtoSituacao.SITUACAO" class="control-label">Situação</label>
+                    <input asp-for="dtoSituacao.SITUACAO" class="form-control" />
+                    <span asp-validation-for="dtoSituacao.SITUACAO" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Adicionar Gênero" class="btn btn-primary" />
+                    <input type="submit" value="Adicionar Situação" class="btn btn-primary" />
                 </div>
             </form>
         </div>
         <div class="col-md-4" style="padding-left: 50px">
             <span style="font-weight: bold">
-            Gêneros são categorias ou classificações que distinguem
-            os temas, como Romance, Drama, Ação e etc.<br />
-            Não é possível cadastrar um mangá sem um Gênero.</span>
+            Situações são estados que servem para você lembrar
+            se já terminou um mangá, se não iniciou, se está lendo e etc.<br />
+            Exemplos de situações: Completo, Lendo, Não comecei.<br />
+            Não é possível cadastrar um mangá sem uma situação.</span>
         </div>
     </div>
-
-    <div id="teste"></div>
 
     <div>
         <a asp-action="Index" asp-controller="Mangas">Voltar</a>
@@ -43,31 +39,31 @@
     <div class="empty-space"></div>
     <div class="empty-space"></div>
     <div class="empty-space"></div>
-    <h1>Todos Gêneros</h1>
+    <h1>Todas Situações</h1>
     <hr />
-    @if (Model.listDTOGeneros != null)
+    @if (Model.listDTOSituacoes != null)
     {
         <table class="table">
             <thead>
                 <tr>
                     <th>
-                        <span>Código Do Genero</span>
+                        <span>Código Da Situação</span>
                     </th>
                     <th>
-                        <span>Genero</span>
+                        <span>Situação</span>
                     </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.listDTOGeneros)
+                @foreach (var item in Model.listDTOSituacoes)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(i => item.ID_GENERO)
+                            @Html.DisplayFor(i => item.ID_SITUACAO)
                         </td>
                         <td>
-                            @Html.DisplayFor(n => item.NM_GENERO)
+                            @Html.DisplayFor(n => item.SITUACAO)
                         </td>
                         <td>
                             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
@@ -83,9 +79,10 @@
     {
         <text>            
             <div class="background-NoContentdb">
-                <p>Nenhum gênero cadastrado no banco de dados!</p>
+                <p>Nenhuma Situação cadastrada no banco de dados!</p>
                 <img src="~/img/NoContent.png" />
             </div>
         </text>
     }
 </div>
+

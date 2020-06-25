@@ -1,20 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SeeManga.Models.Model
 {
-    public class MangaGenerosModel
+    public class MangaSituacoesModel
     {
         public DTOManga dtoManga { get; set; }
 
-        public DTOGenero dtoGenero { get; set; }
+        public DTOSituacao dtoSituacao { get; set; }
 
-        public IEnumerable<DTOGenero> listDTOGeneros { get; set; }
+        public IEnumerable<DTOSituacao> listDTOSituacoes { get; set; }
 
-        
         //public List<SelectListItem> GetLocais()
         //{
         //    List<SelectListItem> locais = new List<SelectListItem>();

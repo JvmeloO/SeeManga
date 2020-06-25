@@ -334,3 +334,6 @@ C:\Users\jvmel\source\SeeManga\Web_SeeManga\SeeManga\obj\Debug\netcoreapp3.1\See
 C:\Users\jvmel\source\SeeManga\Web_SeeManga\SeeManga\obj\Debug\netcoreapp3.1\Razor\Views\Generos\Index.cshtml.g.cs
 C:\Users\jvmel\source\SeeManga\Web_SeeManga\SeeManga\obj\Debug\netcoreapp3.1\Razor\Views\Mangas\AdicionarManga.cshtml.g.cs
 C:\Users\jvmel\source\SeeManga\Web_SeeManga\SeeManga\obj\Debug\netcoreapp3.1\Razor\Views\Mangas\Index.cshtml.g.cs
+C:\Users\jvmel\source\SeeManga\Web_SeeManga\SeeManga\obj\Debug\netcoreapp3.1\Razor\Views\Home\Oque.cshtml.g.cs
+C:\Users\jvmel\source\SeeManga\Web_SeeManga\SeeManga\obj\Debug\netcoreapp3.1\SeeManga.csprojAssemblyReference.cache
+C:\Users\jvmel\source\SeeManga\Web_SeeManga\SeeManga\obj\Debug\netcoreapp3.1\Razor\Views\Situacoes\Index.cshtml.g.cs

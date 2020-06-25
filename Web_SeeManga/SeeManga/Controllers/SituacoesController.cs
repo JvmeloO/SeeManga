@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -13,13 +12,13 @@ using SeeManga.Models.Model;
 
 namespace SeeManga.Controllers
 {
-    public class GenerosController : Controller
+    public class SituacoesController : Controller
     {
         string urlApi;
         HttpClient client = new HttpClient();
         private readonly IConfiguration _configuration;
 
-        public GenerosController(IConfiguration configuration)
+        public SituacoesController(IConfiguration configuration)
         {
             _configuration = configuration;
             urlApi = _configuration.GetValue<string>("AppSettings:conexao_API");
@@ -27,23 +26,23 @@ namespace SeeManga.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var model = new MangaGenerosModel();
+            var model = new MangaSituacoesModel();
             try
             {
-                var response = await client.GetAsync($"{urlApi}/Generos");
-                var responseData = JsonConvert.DeserializeObject<IEnumerable<DTOGenero>>(await response.Content.ReadAsStringAsync());
+                var response = await client.GetAsync($"{urlApi}/Situacoes");
+                var responseData = JsonConvert.DeserializeObject<IEnumerable<DTOSituacao>>(await response.Content.ReadAsStringAsync());
 
-                model.listDTOGeneros = responseData;
+                model.listDTOSituacoes = responseData;
 
                 return View(model);
             }
-            catch (Exception) 
+            catch (Exception)
             {
                 return View(model);
             }
         }
 
-        public async Task<IActionResult> AdicionarGenero(DTOGenero dtoGenero) 
+        public async Task<IActionResult> AdicionarSituacao(DTOSituacao dtoSituacao)
         {
             if (!ModelState.IsValid)
             {
@@ -52,9 +51,9 @@ namespace SeeManga.Controllers
 
             try
             {
-                var json = JsonConvert.SerializeObject(dtoGenero);
+                var json = JsonConvert.SerializeObject(dtoSituacao);
                 var contentString = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync($"{urlApi}/Generos", contentString);
+                var response = await client.PostAsync($"{urlApi}/Situacoes", contentString);
 
                 return RedirectToAction("Index");
             }
