@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace API_SeeManga.Controllers
 {
-    [Authorize(AuthenticationSchemes = "Bearer")]
+    //[Authorize(AuthenticationSchemes = "Bearer")]
     [Route("api/[controller]")]
     [ApiController]
     public class SituacoesController : ControllerBase
