@@ -9,12 +9,11 @@
 
     <div class="empty-space"></div>
 
-    <div class="row" id="Teste">
+    <div class="row">
         <div class="col-md-4">
             <form asp-action="AdicionarGenero" asp-controller="Generos"
                   method="post"
-                  data-ajax="true"
-                  data-ajax-update="#teste">
+                  data-ajax="true">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="dtoGenero.NM_GENERO" class="control-label">Gênero</label>
@@ -28,13 +27,12 @@
         </div>
         <div class="col-md-4" style="padding-left: 50px">
             <span style="font-weight: bold">
-            Gêneros são categorias ou classificações que distinguem
-            os temas, como Romance, Drama, Ação e etc.<br />
-            Não é possível cadastrar um mangá sem um Gênero.</span>
+                Gêneros são categorias ou classificações que distinguem
+                os temas, como Romance, Drama, Ação e etc.<br />
+                Não é possível cadastrar um mangá sem um Gênero.
+            </span>
         </div>
     </div>
-
-    <div id="teste"></div>
 
     <div>
         <a asp-action="Index" asp-controller="Mangas">Voltar</a>
@@ -47,20 +45,20 @@
     <hr />
     @if (Model.listDTOGeneros != null)
     {
-        <table class="table">
+        <table class="table" id="tableGenero">
             <thead>
                 <tr>
                     <th>
-                        <span>Código Do Genero</span>
+                        <span>Código Do Gênero</span>
                     </th>
                     <th>
-                        <span>Genero</span>
+                        <span>Gênero</span>
                     </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.listDTOGeneros)
+                @foreach (var item in Model.listDTOGeneros.OrderByDescending(i => i.ID_GENERO))
                 {
                     <tr>
                         <td>
@@ -70,9 +68,16 @@
                             @Html.DisplayFor(n => item.NM_GENERO)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                            <a href="#" data-id="@item.ID_GENERO" class="showModalEdit">
+                                Editar
+                            </a>
+                            <span>|</span>
+                            <a href="#" data-id="@item.ID_GENERO" class="showModalDelete">
+                                Deletar
+                            </a>
+                            @*@Html.ActionLink("Editar", null, null, new { id = item.ID_GENERO }, new { @class="btn edit" })*@
+                            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })*@
+                            @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                         </td>
                     </tr>
                 }
@@ -81,7 +86,7 @@
     }
     else
     {
-        <text>            
+        <text>
             <div class="background-NoContentdb">
                 <p>Nenhum gênero cadastrado no banco de dados!</p>
                 <img src="~/img/NoContent.png" />
@@ -89,3 +94,97 @@
         </text>
     }
 </div>
+
+<!--MODAL PARA EDITAR O GENERO-->
+<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="mainContent">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEditarLabel">Editar Gênero</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-action="EditarGenero" asp-controller="Generos">
+                <div class="modal-body" id="modalbody">
+                    <input id="IdGenero" asp-for="dtoGenero.ID_GENERO" type="hidden" />
+                    <div class="form-group">
+                        <label asp-for="dtoGenero.NM_GENERO" class="col-form-label">Gênero</label>
+                        <input class="form-control" id="NmGenero" asp-for="dtoGenero.NM_GENERO">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Editar Genêro</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--MODAL PARA DELETAR O GENERO-->
+<div class="modal" id="deletemodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Deletar Gênero</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-action="DeletarGenero" asp-controller="Generos">
+                <div class="modal-body">
+                    <input type="hidden" id="deleteId" name="id" />
+                    <p>Tem certeza que deseja deletar o Gênero?.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Deletar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--Script para mostrar modal de editar-->
+<!--Lembrando que está atualizando a página toda, lembrar de atualizar apenas a tabela!!!-->>
+<script>
+    $(".showModalEdit").click(function (e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        //alert(id);
+        $.ajax({
+            dataType: "json",
+            type: "GET",
+            url: '@Url.Action("GetEditarGenero")',
+            data: {
+                "id": id
+            },
+            success: function (partialViewResult) {
+                var data = jQuery.parseJSON(partialViewResult);
+                //console.log(data.ID_GENERO);
+                //console.log(data.NM_GENERO);
+                $('#editmodal #IdGenero').val(data.ID_GENERO);
+                $('#editmodal #NmGenero').val(data.NM_GENERO);
+                $('#editmodal').modal('show');
+            },
+            error: function ()
+            {
+                url: '@Url.Action("Index")'
+            }
+        });
+    });
+</script>
+
+
+<!--Script para mostrar modal de deletar-->
+<script>
+    $(".showModalDelete").click(function (e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        $('#deletemodal #deleteId').val(id);
+        $('#deletemodal').modal('show');
+    });
+</script>

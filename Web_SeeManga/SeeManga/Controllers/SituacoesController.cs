@@ -14,8 +14,8 @@ namespace SeeManga.Controllers
 {
     public class SituacoesController : Controller
     {
-        string urlApi;
-        HttpClient client = new HttpClient();
+        private readonly string urlApi;
+        private readonly HttpClient client = new HttpClient();
         private readonly IConfiguration _configuration;
 
         public SituacoesController(IConfiguration configuration)

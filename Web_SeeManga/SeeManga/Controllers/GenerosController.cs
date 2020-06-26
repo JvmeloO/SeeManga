@@ -15,8 +15,8 @@ namespace SeeManga.Controllers
 {
     public class GenerosController : Controller
     {
-        string urlApi;
-        HttpClient client = new HttpClient();
+        private readonly string urlApi;
+        private readonly HttpClient client = new HttpClient();
         private readonly IConfiguration _configuration;
 
         public GenerosController(IConfiguration configuration)
@@ -55,6 +55,48 @@ namespace SeeManga.Controllers
                 var json = JsonConvert.SerializeObject(dtoGenero);
                 var contentString = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await client.PostAsync($"{urlApi}/Generos", contentString);
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetEditarGenero(int id) 
+        {
+            var response = await client.GetAsync($"{urlApi}/Generos/{id}");
+            var responseData = JsonConvert.DeserializeObject<DTOGenero>(await response.Content.ReadAsStringAsync());
+
+            var responseJson = JsonConvert.SerializeObject(responseData);
+
+            return Json(responseJson);
+        }
+
+        public async Task<IActionResult> EditarGenero(DTOGenero dtoGenero) 
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(dtoGenero);
+                var contentString = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PutAsync($"{urlApi}/Generos/{dtoGenero.ID_GENERO}", contentString);
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+
+                return RedirectToAction("Index");
+            }
+        }
+
+        public async Task<IActionResult> DeletarGenero(int id)
+        {
+            try
+            {
+                var delete = await client.DeleteAsync($"{urlApi}/Generos/{id}");
 
                 return RedirectToAction("Index");
             }
