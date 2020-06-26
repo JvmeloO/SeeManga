@@ -25,10 +25,11 @@
         </div>
         <div class="col-md-4" style="padding-left: 50px">
             <span style="font-weight: bold">
-            Situações são estados que servem para você lembrar
-            se já terminou um mangá, se não iniciou, se está lendo e etc.<br />
-            Exemplos de situações: Completo, Lendo, Não comecei.<br />
-            Não é possível cadastrar um mangá sem uma situação.</span>
+                Situações são estados que servem para você lembrar
+                se já terminou um mangá, se não iniciou, se está lendo e etc.<br />
+                Exemplos de situações: Completo, Lendo, Não comecei.<br />
+                Não é possível cadastrar um mangá sem uma situação.
+            </span>
         </div>
     </div>
 
@@ -66,9 +67,16 @@
                             @Html.DisplayFor(n => item.SITUACAO)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                            <a href="#" data-id="@item.ID_SITUACAO" class="showModalEdit">
+                                Editar
+                            </a>
+                            <span>|</span>
+                            <a href="#" data-id="@item.ID_SITUACAO" class="showModalDelete">
+                                Deletar
+                            </a>
+                            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                         </td>
                     </tr>
                 }
@@ -77,7 +85,7 @@
     }
     else
     {
-        <text>            
+        <text>
             <div class="background-NoContentdb">
                 <p>Nenhuma Situação cadastrada no banco de dados!</p>
                 <img src="~/img/NoContent.png" />
@@ -85,4 +93,99 @@
         </text>
     }
 </div>
+
+
+<!--MODAL PARA EDITAR A SITUAÇÃO-->
+<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="mainContent">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEditarLabel">Editar Situação</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-action="EditarSituacao" asp-controller="Situacoes">
+                <div class="modal-body" id="modalbody">
+                    <input id="IdSituacao" asp-for="dtoSituacao.ID_SITUACAO" type="hidden" />
+                    <div class="form-group">
+                        <label asp-for="dtoSituacao.SITUACAO" class="col-form-label">Gênero</label>
+                        <input class="form-control" id="NmSituacao" asp-for="dtoSituacao.SITUACAO">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Editar Genêro</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--MODAL PARA DELETAR O GENERO-->
+<div class="modal" id="deletemodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Deletar Situação</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-action="DeletarSituacao" asp-controller="Situacoes">
+                <div class="modal-body">
+                    <input type="hidden" id="deleteId" name="id" />
+                    <p>Tem certeza que deseja deletar a Situação?.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Deletar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--Script para mostrar modal de editar-->
+<!--Lembrando que está atualizando a página toda, lembrar de atualizar apenas a tabela!!!-->>
+<script>
+    $(".showModalEdit").click(function (e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        //alert(id);
+        $.ajax({
+            dataType: "json",
+            type: "GET",
+            url: '@Url.Action("GetEditarSituacao")',
+            data: {
+                "id": id
+            },
+            success: function (partialViewResult) {
+                var data = jQuery.parseJSON(partialViewResult);
+                //console.log(data.ID_GENERO);
+                //console.log(data.NM_GENERO);
+                $('#editmodal #IdSituacao').val(data.ID_SITUACAO);
+                $('#editmodal #NmSituacao').val(data.SITUACAO);
+                $('#editmodal').modal('show');
+            },
+            error: function ()
+            {
+                url: '@Url.Action("Index")'
+            }
+        });
+    });
+</script>
+
+
+<!--Script para mostrar modal de deletar-->
+<script>
+    $(".showModalDelete").click(function (e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        $('#deletemodal #deleteId').val(id);
+        $('#deletemodal').modal('show');
+    });
+</script>
 

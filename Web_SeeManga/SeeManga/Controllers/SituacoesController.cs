@@ -62,5 +62,47 @@ namespace SeeManga.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        [HttpGet]
+        public async Task<JsonResult> GetEditarSituacao(int id)
+        {
+            var response = await client.GetAsync($"{urlApi}/Situacoes/{id}");
+            var responseData = JsonConvert.DeserializeObject<DTOSituacao>(await response.Content.ReadAsStringAsync());
+
+            var responseJson = JsonConvert.SerializeObject(responseData);
+
+            return Json(responseJson);
+        }
+
+        public async Task<IActionResult> EditarSituacao(DTOSituacao dtoSituacao)
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(dtoSituacao);
+                var contentString = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PutAsync($"{urlApi}/Situacoes/{dtoSituacao.ID_SITUACAO}", contentString);
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+
+                return RedirectToAction("Index");
+            }
+        }
+
+        public async Task<IActionResult> DeletarSituacao(int id)
+        {
+            try
+            {
+                var delete = await client.DeleteAsync($"{urlApi}/Situacoes/{id}");
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
