@@ -21,6 +21,8 @@ namespace API_SeeManga.Data
         public DbSet<SituacoesModel> Situacoes { get; set; }
 
         public DbSet<GenerosModel> Generos { get; set; }
+        
+        public DbSet<Manga_GenerosModel> Manga_Generos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -57,12 +59,6 @@ namespace API_SeeManga.Data
                       .HasForeignKey(s => s.ID_SITUACAO)
                       .OnDelete(DeleteBehavior.ClientSetNull)
                       .HasConstraintName("FK_MANGA_SITUACAO");
-
-                entity.HasOne(s => s.Genero)
-                      .WithMany(m => m.Mangas)
-                      .HasForeignKey(s => s.ID_GENERO)
-                      .OnDelete(DeleteBehavior.ClientSetNull)
-                      .HasConstraintName("FK_MANGA_GENERO");
             });
 
             modelBuilder.Entity<PaginasModel>(entity =>
@@ -72,6 +68,23 @@ namespace API_SeeManga.Data
                       .HasForeignKey(c => c.ID_CAPITULOS)
                       .OnDelete(DeleteBehavior.ClientSetNull)
                       .HasConstraintName("FK_PAGINAS_CAPITULOS");
+            });
+
+            modelBuilder.Entity<Manga_GenerosModel>(entity =>
+            {
+                entity.HasKey(i => new { i.ID_GENERO, i.ID_MANGA });
+
+                entity.HasOne(g => g.Genero)
+                      .WithMany(m => m.Manga_generos)
+                      .HasForeignKey(g => g.ID_GENERO)
+                      .OnDelete(DeleteBehavior.ClientSetNull)
+                      .HasConstraintName("FK_MANGA_GENEROS_GENERO");
+
+                entity.HasOne(m => m.Manga)
+                      .WithMany(m => m.Manga_generos)
+                      .HasForeignKey(m => m.ID_MANGA)
+                      .OnDelete(DeleteBehavior.ClientSetNull)
+                      .HasConstraintName("FK_MANGA_GENEROS_MANGA");
             });
 
 

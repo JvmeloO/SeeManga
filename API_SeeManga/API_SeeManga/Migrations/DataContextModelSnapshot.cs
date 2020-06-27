@@ -76,11 +76,27 @@ namespace API_SeeManga.Migrations
 
                     b.Property<string>("NM_GENERO")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.HasKey("ID_GENERO");
 
                     b.ToTable("Generos");
+                });
+
+            modelBuilder.Entity("API_SeeManga.Models.Model.Manga_GenerosModel", b =>
+                {
+                    b.Property<int>("ID_GENERO")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ID_MANGA")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID_GENERO", "ID_MANGA");
+
+                    b.HasIndex("ID_MANGA");
+
+                    b.ToTable("Manga_Generos");
                 });
 
             modelBuilder.Entity("API_SeeManga.Models.Model.MangasModel", b =>
@@ -93,9 +109,6 @@ namespace API_SeeManga.Migrations
                     b.Property<byte[]>("CAPA")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
-
-                    b.Property<int>("ID_GENERO")
-                        .HasColumnType("int");
 
                     b.Property<int>("ID_SITUACAO")
                         .HasColumnType("int");
@@ -111,8 +124,6 @@ namespace API_SeeManga.Migrations
                         .HasMaxLength(150);
 
                     b.HasKey("ID_MANGA");
-
-                    b.HasIndex("ID_GENERO");
 
                     b.HasIndex("ID_SITUACAO");
 
@@ -178,14 +189,23 @@ namespace API_SeeManga.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("API_SeeManga.Models.Model.MangasModel", b =>
+            modelBuilder.Entity("API_SeeManga.Models.Model.Manga_GenerosModel", b =>
                 {
                     b.HasOne("API_SeeManga.Models.Model.GenerosModel", "Genero")
-                        .WithMany("Mangas")
+                        .WithMany("Manga_generos")
                         .HasForeignKey("ID_GENERO")
-                        .HasConstraintName("FK_MANGA_GENERO")
+                        .HasConstraintName("FK_MANGA_GENEROS_GENERO")
                         .IsRequired();
 
+                    b.HasOne("API_SeeManga.Models.Model.MangasModel", "Manga")
+                        .WithMany("Manga_generos")
+                        .HasForeignKey("ID_MANGA")
+                        .HasConstraintName("FK_MANGA_GENEROS_MANGA")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("API_SeeManga.Models.Model.MangasModel", b =>
+                {
                     b.HasOne("API_SeeManga.Models.Model.SituacoesModel", "Situacao")
                         .WithMany("Mangas")
                         .HasForeignKey("ID_SITUACAO")

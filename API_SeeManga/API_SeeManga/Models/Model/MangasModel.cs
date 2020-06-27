@@ -25,12 +25,9 @@ namespace API_SeeManga.Models.Model
         [Required]
         public int ID_SITUACAO { get; set; }
 
-        [Required]
-        public int ID_GENERO { get; set; }
-
         public virtual SituacoesModel Situacao { get; set; }
 
-        public virtual GenerosModel Genero { get; set; }
+        public virtual ICollection<Manga_GenerosModel> Manga_generos { get; set; }
 
         public virtual ICollection<CapitulosModel> Capitulos { get; set; }
 

@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace API_SeeManga.Models.Model
 {
-    public class GenerosModel
+    public class Manga_GenerosModel
     {
-        [Key]
+        //[Key]
+        public int ID_MANGA { get; set; }
+
+        //[Key]
         public int ID_GENERO { get; set; }
 
-        [Required]
-        [MaxLength(30)]
-        public string NM_GENERO { get; set; }
-        
-        public virtual ICollection<Manga_GenerosModel> Manga_generos { get; set; }
+        public virtual GenerosModel Genero { get; set; }
+
+        public virtual MangasModel Manga { get; set; }
     }
 }
