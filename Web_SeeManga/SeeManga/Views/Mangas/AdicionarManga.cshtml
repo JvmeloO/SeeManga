@@ -1,4 +1,4 @@
-﻿@model SeeManga.Models.DTOManga
+﻿@model SeeManga.Models.Model.MangaGenerosSituacaoModel
 
 @{
     ViewData["Title"] = "AdicionarManga";
@@ -10,34 +10,40 @@
 
     <div class="row">
         <div class="col-md-4">
-            <form asp-action="AdicionarManga" asp-controller="Mangas" 
-                  method="post" 
-                  data-ajax="true">
+            <form asp-action="PostAdicionarManga" asp-controller="Mangas">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="TITULO" class="control-label">Titulo</label>
-                    <input asp-for="TITULO" class="form-control" />
-                    <span asp-validation-for="TITULO" class="text-danger"></span>
+                    <label asp-for="DtoManga.TITULO" class="control-label">Titulo</label>
+                    <input asp-for="DtoManga.TITULO" class="form-control" />
+                    <span asp-validation-for="DtoManga.TITULO" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="SINOPSE" class="control-label">Sinopse</label>
-                    <input asp-for="SINOPSE" class="form-control" />
-                    <span asp-validation-for="SINOPSE" class="text-danger"></span>
+                    <label asp-for="DtoManga.SINOPSE" class="control-label">Sinopse</label>
+                    <textarea asp-for="DtoManga.SINOPSE" class="form-control"></textarea>
+                    <span asp-validation-for="DtoManga.SINOPSE" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="CAPA" class="control-label">Capa</label>
-                    <input asp-for="CAPA" class="form-control-file" />
-                    <span asp-validation-for="CAPA" class="text-danger"></span>
+                    <label asp-for="DtoManga.CAPA" class="control-label">Capa</label>
+                    <input asp-for="DtoManga.CAPA" type="file" class="form-control-file" />
+                    <span asp-validation-for="DtoManga.CAPA" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="ID_SITUACAO" class="control-label"></label>
-                    <input asp-for="ID_SITUACAO" class="form-control" />
-                    <span asp-validation-for="ID_SITUACAO" class="text-danger"></span>
+                    <label asp-for="GenerosSelected" class="control-label">Gêneros</label>
+                    <select id="multiSelected" asp-for="GenerosSelected" asp-items="Model.GetGeneros()" class="form-control" multiple></select>
+                    <span asp-validation-for="GenerosSelected" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <label asp-for="DtoManga.ID_SITUACAO" class="control-label">Situações</label>
+                    <select asp-for="DtoManga.ID_SITUACAO" asp-items="Model.GetSituacoes()" class="custom-select"></select>
+                    <span asp-validation-for="DtoManga.ID_SITUACAO" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Adicionar Mangá" class="btn btn-primary" />
                 </div>
             </form>
         </div>
+    </div>
+    <div>
+        <a asp-action="Index" asp-controller="Mangas">Voltar</a>
     </div>
 </div>

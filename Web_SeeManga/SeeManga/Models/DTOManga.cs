@@ -25,9 +25,6 @@ namespace SeeManga.Models
         [Required]
         public int ID_SITUACAO { get; set; }
 
-        [Required]
-        public int ID_GENERO { get; set; }
-
         //    public virtual SituacoesModel Situacoes { get; set; }
 
         //    public virtual ICollection<CapitulosModel> Capitulos { get; set; }

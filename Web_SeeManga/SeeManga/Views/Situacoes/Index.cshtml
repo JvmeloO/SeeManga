@@ -1,4 +1,4 @@
-﻿@model SeeManga.Models.Model.MangaSituacoesModel
+﻿@model SeeManga.Models.Model.SituacoesModel
 
 @{
     ViewData["Title"] = "Index";
@@ -14,9 +14,9 @@
                   data-ajax="true">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="dtoSituacao.SITUACAO" class="control-label">Situação</label>
-                    <input asp-for="dtoSituacao.SITUACAO" class="form-control" />
-                    <span asp-validation-for="dtoSituacao.SITUACAO" class="text-danger"></span>
+                    <label asp-for="DtoSituacao.SITUACAO" class="control-label">Situação</label>
+                    <input asp-for="DtoSituacao.SITUACAO" class="form-control" />
+                    <span asp-validation-for="DtoSituacao.SITUACAO" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Adicionar Situação" class="btn btn-primary" />
@@ -42,7 +42,7 @@
     <div class="empty-space"></div>
     <h1>Todas Situações</h1>
     <hr />
-    @if (Model.listDTOSituacoes != null)
+    @if (Model.ListDTOSituacoes != null)
     {
         <table class="table">
             <thead>
@@ -57,7 +57,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.listDTOSituacoes.OrderByDescending(i => i.ID_SITUACAO))
+                @foreach (var item in Model.ListDTOSituacoes.OrderByDescending(i => i.ID_SITUACAO))
                 {
                     <tr>
                         <td>
@@ -107,10 +107,10 @@
             </div>
             <form asp-action="EditarSituacao" asp-controller="Situacoes">
                 <div class="modal-body" id="modalbody">
-                    <input id="IdSituacao" asp-for="dtoSituacao.ID_SITUACAO" type="hidden" />
+                    <input id="IdSituacao" asp-for="DtoSituacao.ID_SITUACAO" type="hidden" />
                     <div class="form-group">
-                        <label asp-for="dtoSituacao.SITUACAO" class="col-form-label">Gênero</label>
-                        <input class="form-control" id="NmSituacao" asp-for="dtoSituacao.SITUACAO">
+                        <label asp-for="DtoSituacao.SITUACAO" class="col-form-label">Gênero</label>
+                        <input class="form-control" id="NmSituacao" asp-for="DtoSituacao.SITUACAO">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -123,12 +123,12 @@
 </div>
 
 
-<!--MODAL PARA DELETAR O GENERO-->
-<div class="modal" id="deletemodal" tabindex="-1" role="dialog">
+<!--MODAL PARA DELETAR O SITUAÇÃO-->
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Deletar Situação</h5>
+                <h5 class="modal-title" id="ModalLabel">Deletar Situação</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -136,11 +136,11 @@
             <form asp-action="DeletarSituacao" asp-controller="Situacoes">
                 <div class="modal-body">
                     <input type="hidden" id="deleteId" name="id" />
-                    <p>Tem certeza que deseja deletar a Situação?.</p>
+                    <p>Tem certeza que deseja deletar a Situação?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Deletar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Deletar</button>
                 </div>
             </form>
         </div>
@@ -149,7 +149,7 @@
 
 
 <!--Script para mostrar modal de editar-->
-<!--Lembrando que está atualizando a página toda, lembrar de atualizar apenas a tabela!!!-->>
+<!--Lembrando que está atualizando a página toda, lembrar de atualizar apenas a tabela!!!-->
 <script>
     $(".showModalEdit").click(function (e) {
         e.preventDefault();

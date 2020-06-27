@@ -27,13 +27,18 @@ namespace SeeManga.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var model = new MangaGenerosModel();
+            var model = new GenerosModel();
             try
             {
                 var response = await client.GetAsync($"{urlApi}/Generos");
                 var responseData = JsonConvert.DeserializeObject<IEnumerable<DTOGenero>>(await response.Content.ReadAsStringAsync());
 
-                model.listDTOGeneros = responseData;
+                if (responseData.Count() == 0)
+                {
+                    return View(model);
+                }
+
+                model.ListDTOGeneros = responseData;
 
                 return View(model);
             }

@@ -26,13 +26,18 @@ namespace SeeManga.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var model = new MangaSituacoesModel();
+            var model = new SituacoesModel();
             try
             {
                 var response = await client.GetAsync($"{urlApi}/Situacoes");
                 var responseData = JsonConvert.DeserializeObject<IEnumerable<DTOSituacao>>(await response.Content.ReadAsStringAsync());
 
-                model.listDTOSituacoes = responseData;
+                if (responseData.Count() == 0)
+                {
+                    return View(model);
+                }
+
+                model.ListDTOSituacoes = responseData;
 
                 return View(model);
             }

@@ -1,4 +1,4 @@
-﻿@model SeeManga.Models.Model.MangaGenerosModel
+﻿@model SeeManga.Models.Model.GenerosModel
 
 @{
     ViewData["Title"] = "Index";
@@ -16,9 +16,9 @@
                   data-ajax="true">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="dtoGenero.NM_GENERO" class="control-label">Gênero</label>
-                    <input asp-for="dtoGenero.NM_GENERO" class="form-control" />
-                    <span asp-validation-for="dtoGenero.NM_GENERO" class="text-danger"></span>
+                    <label asp-for="DtoGenero.NM_GENERO" class="control-label">Gênero</label>
+                    <input asp-for="DtoGenero.NM_GENERO" class="form-control" />
+                    <span asp-validation-for="DtoGenero.NM_GENERO" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Adicionar Gênero" class="btn btn-primary" />
@@ -43,7 +43,7 @@
     <div class="empty-space"></div>
     <h1>Todos Gêneros</h1>
     <hr />
-    @if (Model.listDTOGeneros != null)
+    @if (Model.ListDTOGeneros != null)
     {
         <table class="table" id="tableGenero">
             <thead>
@@ -58,7 +58,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.listDTOGeneros.OrderByDescending(i => i.ID_GENERO))
+                @foreach (var item in Model.ListDTOGeneros.OrderByDescending(i => i.ID_GENERO))
                 {
                     <tr>
                         <td>
@@ -107,10 +107,10 @@
             </div>
             <form asp-action="EditarGenero" asp-controller="Generos">
                 <div class="modal-body" id="modalbody">
-                    <input id="IdGenero" asp-for="dtoGenero.ID_GENERO" type="hidden" />
+                    <input id="IdGenero" asp-for="DtoGenero.ID_GENERO" type="hidden" />
                     <div class="form-group">
-                        <label asp-for="dtoGenero.NM_GENERO" class="col-form-label">Gênero</label>
-                        <input class="form-control" id="NmGenero" asp-for="dtoGenero.NM_GENERO">
+                        <label asp-for="DtoGenero.NM_GENERO" class="col-form-label">Gênero</label>
+                        <input class="form-control" id="NmGenero" asp-for="DtoGenero.NM_GENERO">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -124,11 +124,11 @@
 
 
 <!--MODAL PARA DELETAR O GENERO-->
-<div class="modal" id="deletemodal" tabindex="-1" role="dialog">
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Deletar Gênero</h5>
+                <h5 class="modal-title" id="ModalLabel">Deletar Genero</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -136,11 +136,11 @@
             <form asp-action="DeletarGenero" asp-controller="Generos">
                 <div class="modal-body">
                     <input type="hidden" id="deleteId" name="id" />
-                    <p>Tem certeza que deseja deletar o Gênero?.</p>
+                    <p>Tem certeza que deseja deletar o Gênero?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Deletar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Deletar</button>
                 </div>
             </form>
         </div>
@@ -149,7 +149,7 @@
 
 
 <!--Script para mostrar modal de editar-->
-<!--Lembrando que está atualizando a página toda, lembrar de atualizar apenas a tabela!!!-->>
+<!--Lembrando que está atualizando a página toda, lembrar de atualizar apenas a tabela!!!-->
 <script>
     $(".showModalEdit").click(function (e) {
         e.preventDefault();

@@ -336,4 +336,3 @@ C:\Users\jvmel\source\SeeManga\Web_SeeManga\SeeManga\obj\Debug\netcoreapp3.1\sta
 C:\Users\jvmel\source\SeeManga\Web_SeeManga\SeeManga\obj\Debug\netcoreapp3.1\SeeManga.dll
 C:\Users\jvmel\source\SeeManga\Web_SeeManga\SeeManga\obj\Debug\netcoreapp3.1\SeeManga.pdb
 C:\Users\jvmel\source\SeeManga\Web_SeeManga\SeeManga\obj\Debug\netcoreapp3.1\SeeManga.genruntimeconfig.cache
-C:\Users\jvmel\source\SeeManga\Web_SeeManga\SeeManga\obj\Debug\netcoreapp3.1\SeeManga.csprojAssemblyReference.cache
