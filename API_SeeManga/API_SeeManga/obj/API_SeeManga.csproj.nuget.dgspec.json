@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jvmel\\source\\SeeManga\\API_SeeManga\\API_SeeManga\\API_SeeManga.csproj": {}
+    "D:\\Git\\SeeManga\\API_SeeManga\\API_SeeManga\\API_SeeManga.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jvmel\\source\\SeeManga\\API_SeeManga\\API_SeeManga\\API_SeeManga.csproj": {
+    "D:\\Git\\SeeManga\\API_SeeManga\\API_SeeManga\\API_SeeManga.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jvmel\\source\\SeeManga\\API_SeeManga\\API_SeeManga\\API_SeeManga.csproj",
+        "projectUniqueName": "D:\\Git\\SeeManga\\API_SeeManga\\API_SeeManga\\API_SeeManga.csproj",
         "projectName": "API_SeeManga",
-        "projectPath": "C:\\Users\\jvmel\\source\\SeeManga\\API_SeeManga\\API_SeeManga\\API_SeeManga.csproj",
+        "projectPath": "D:\\Git\\SeeManga\\API_SeeManga\\API_SeeManga\\API_SeeManga.csproj",
         "packagesPath": "C:\\Users\\jvmel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jvmel\\source\\SeeManga\\API_SeeManga\\API_SeeManga\\obj\\",
+        "outputPath": "D:\\Git\\SeeManga\\API_SeeManga\\API_SeeManga\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jvmel\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -87,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

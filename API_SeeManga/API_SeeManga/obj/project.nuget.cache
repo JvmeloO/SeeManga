@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bSrsVvTs6rdr49IyL2gscdsFMPBFdN1RkGqZrfRclx2EMtA9QKvHlou5p38OmPRNzlRvTP3P5/keyQGWx+rLdQ==",
+  "dgSpecHash": "0KtSyl8oz2eFJp5xZ6zRRXYt//YtsNZzwSFKf7S+OeKfDmPBQ/puzmTPOSb2jX3mKiSiBv5T1kn1DlVuSPMNVA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jvmel\\source\\SeeManga\\API_SeeManga\\API_SeeManga\\API_SeeManga.csproj",
+  "projectFilePath": "D:\\Git\\SeeManga\\API_SeeManga\\API_SeeManga\\API_SeeManga.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jvmel\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.3\\microsoft.aspnetcore.authentication.jwtbearer.3.1.3.nupkg.sha512",
     "C:\\Users\\jvmel\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.3\\microsoft.aspnetcore.cryptography.internal.3.1.3.nupkg.sha512",

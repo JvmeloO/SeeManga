@@ -13,23 +13,23 @@ namespace API_SeeManga.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MangaController : ControllerBase
+    public class MangasController : ControllerBase
     {
         private readonly DataContext _context;
 
-        public MangaController(DataContext context)
+        public MangasController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: api/Manga
+        // GET: api/Mangas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MangasModel>>> GetManga()
         {
             return await _context.Mangas.ToListAsync();
         }
 
-        // GET: api/Manga/5
+        // GET: api/Mangas/5
         [HttpGet("{id}")]
         public async Task<ActionResult<MangasModel>> GetManga(int id)
         {
@@ -43,7 +43,7 @@ namespace API_SeeManga.Controllers
             return mangaModel;
         }
 
-        // PUT: api/Manga/5
+        // PUT: api/Mangas/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.        [HttpPut("{id}")]
         public async Task<IActionResult> PutManga(int id, MangasModel mangaModel)
@@ -74,7 +74,7 @@ namespace API_SeeManga.Controllers
             return NoContent();
         }
 
-        // POST: api/Manga
+        // POST: api/Mangas
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
@@ -86,7 +86,7 @@ namespace API_SeeManga.Controllers
             return mangaModel;
         }
 
-        // DELETE: api/Manga/5
+        // DELETE: api/Mangas/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<MangasModel>> DeleteManga(int id)
         {
