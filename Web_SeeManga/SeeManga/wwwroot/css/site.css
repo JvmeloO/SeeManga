@@ -143,11 +143,14 @@ body {
     padding-top: 2%;
 }
 
-.square {
-   width: 80%;
-   height: 30%;
-   border-color: black;
-   border-width: 2px;
-   border-style: solid;
-   border-radius: 50px;
+.img-manga {
+    width: 150px;
+    height: 200px;
+}
+
+div.box {
+    overflow: hidden;
+    margin: 20px;
+    width: 120px;
+    display: inline-grid;
 }

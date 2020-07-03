@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +13,10 @@ namespace SeeManga.Models.Model
         public DTOManga DtoManga { get; set; }
 
         [Required]
-        public IEnumerable<DTOGenero> GenerosSelected { get; set; }
+        public List<int> GenerosSelected { get; set; }
+
+        [Required]
+        public List<IFormFile> Capa { get; set; }
 
         public DTOSituacao DtoSituacao { get; set; }
 
@@ -24,13 +28,13 @@ namespace SeeManga.Models.Model
         {
             List<SelectListItem> generos = new List<SelectListItem>
             {
-                new SelectListItem()
-                {
-                    Disabled = false,
-                    Text = "Selecionar",
-                    Value = "",
-                    Selected = true
-                }
+                //new SelectListItem()
+                //{
+                //    Disabled = false,
+                //    Text = "Selecionar",
+                //    Value = "",
+                //    Selected = true
+                //}
             };
             if (ListDtoGenero != null)
             {

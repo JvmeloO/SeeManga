@@ -4,13 +4,19 @@
     ViewData["Title"] = "AdicionarManga";
 }
 
+
+<!--Javascript e CSS para o multi select-->
+<script src="~/js/bootstrap-select.min.js"></script>
+<link href="~/css/bootstrap-select.css" rel="stylesheet" />
+<!---->
+
 <div class="container">
     <h1>Adicionar Manga</h1>
     <div class="empty-space"></div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="PostAdicionarManga" asp-controller="Mangas">
+    <form asp-action="PostAdicionarManga" asp-controller="Mangas" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-4">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="DtoManga.TITULO" class="control-label">Titulo</label>
@@ -18,18 +24,13 @@
                     <span asp-validation-for="DtoManga.TITULO" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="DtoManga.SINOPSE" class="control-label">Sinopse</label>
-                    <textarea asp-for="DtoManga.SINOPSE" class="form-control"></textarea>
-                    <span asp-validation-for="DtoManga.SINOPSE" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="DtoManga.CAPA" class="control-label">Capa</label>
-                    <input asp-for="DtoManga.CAPA" type="file" class="form-control-file" />
-                    <span asp-validation-for="DtoManga.CAPA" class="text-danger"></span>
+                    <label asp-for="Capa" class="control-label">Capa</label>
+                    <input asp-for="Capa" type="file" class="form-control-file" />
+                    <span asp-validation-for="Capa" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="GenerosSelected" class="control-label">Gêneros</label>
-                    <select id="multiSelected" asp-for="GenerosSelected" asp-items="Model.GetGeneros()" class="form-control" multiple></select>
+                    <select id="multiSelected" asp-for="GenerosSelected" asp-items="Model.GetGeneros()" class="selectpicker" data-live-search="true" multiple></select>
                     <span asp-validation-for="GenerosSelected" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -37,13 +38,26 @@
                     <select asp-for="DtoManga.ID_SITUACAO" asp-items="Model.GetSituacoes()" class="custom-select"></select>
                     <span asp-validation-for="DtoManga.ID_SITUACAO" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Adicionar Mangá" class="btn btn-primary" />
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
-    <div>
-        <a asp-action="Index" asp-controller="Mangas">Voltar</a>
-    </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="DtoManga.SINOPSE" class="control-label">Sinopse</label>
+                    <textarea asp-for="DtoManga.SINOPSE" class="form-control"></textarea>
+                    <span asp-validation-for="DtoManga.SINOPSE" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Adicionar Mangá" class="btn btn-primary" />
+        </div>
+    </form>
+        <div>
+            <a asp-action="Index" asp-controller="Mangas">Voltar</a>
+        </div>
 </div>
+
+<script>
+    $('#multiSelected').selectpicker();
+</script>

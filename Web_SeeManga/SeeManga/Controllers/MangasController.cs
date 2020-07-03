@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,11 +25,47 @@ namespace SeeManga.Controllers
         {
             _configuration = configuration;
             urlApi = _configuration.GetValue<string>("AppSettings:conexao_API");
-        }                      
+        }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var mangaModel = new MangaModel();
+            try
+            {
+                var response = await client.GetAsync($"{urlApi}/Mangas");
+                var responseData = JsonConvert.DeserializeObject<IEnumerable<DTOManga>>(await response.Content.ReadAsStringAsync());
+
+                if (responseData.Count() == 0)
+                {
+                    return View(mangaModel);
+                }
+
+                var listDtoManga = new List<DTOManga>();
+                foreach (var item in responseData)
+                {
+                    var base64 = Convert.ToBase64String(item.CAPA);
+                    var img = String.Format("data:image/gif;base64,{0}", base64);
+
+                    var dtoManga = new DTOManga()
+                    {
+                        ID_MANGA = item.ID_MANGA,
+                        ID_SITUACAO = item.ID_SITUACAO,
+                        TITULO = item.TITULO,
+                        SINOPSE = item.SINOPSE,
+                        CAPABASE64 = img
+                    };
+
+                    listDtoManga.Add(dtoManga);
+                }
+
+                mangaModel.DtoManga = listDtoManga;
+
+                return View(mangaModel);
+            }
+            catch (Exception)
+            {
+                return View(mangaModel);
+            }
         }
 
         public async Task<IActionResult> AdicionarManga()
@@ -52,7 +91,33 @@ namespace SeeManga.Controllers
 
         public async Task<IActionResult> PostAdicionarManga(MangaGenerosSituacaoModel modelManga) 
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("AdicionarManga");
+            }
+
+            foreach (var item in modelManga.Capa)
+            {
+                if (item.Length > 0)
+                {
+                    using var stream = new MemoryStream();
+                    await item.CopyToAsync(stream);
+                    modelManga.DtoManga.CAPA = stream.ToArray();
+                }
+            }
+
+            try
+            {
+                var json = JsonConvert.SerializeObject(modelManga.DtoManga);
+                var contentString = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync($"{urlApi}/Mangas", contentString);
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("AdicionarManga");
+            }
         }
     }
 }

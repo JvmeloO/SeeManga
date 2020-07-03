@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SeeManga.Models.DTOManga>
+﻿@model SeeManga.Models.Model.MangaModel
 
 <link href="~/img/NoContent.png" />
 @{
@@ -30,57 +30,16 @@
     <div class="empty-space"></div>
     <h1>Todos Mangás</h1>
     <hr />
-    @if (Model != null)
+    <hr />
+    @if (Model.DtoManga != null)
     {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ID_MANGA)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.TITULO)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.SINOPSE)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CAPA)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ID_SITUACAO)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ID_MANGA)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TITULO)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SINOPSE)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CAPA)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ID_SITUACAO)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        @foreach (var item in Model.DtoManga)
+        {
+            <div class="box">
+                <img class="img-thumbnail img-manga" src="@item.CAPABASE64" alt="" />
+                <span>@item.TITULO</span>
+            </div>
+        }
     }
     else
     {

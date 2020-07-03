@@ -19,11 +19,14 @@ namespace SeeManga.Models
         [MaxLength(2500)]
         public string SINOPSE { get; set; }
 
-        [Required]
+        //[Required]
         public byte[] CAPA { get; set; }
 
         [Required]
         public int ID_SITUACAO { get; set; }
+
+
+        public string CAPABASE64 { get; set; }
 
         //    public virtual SituacoesModel Situacoes { get; set; }
 
