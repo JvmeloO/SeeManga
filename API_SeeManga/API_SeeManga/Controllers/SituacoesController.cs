@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API_SeeManga.Data;
-using API_SeeManga.Models.Model;
+using API_SeeManga.DTO;
 using Microsoft.AspNetCore.Authorization;
 
 namespace API_SeeManga.Controllers
@@ -25,16 +25,16 @@ namespace API_SeeManga.Controllers
 
         // GET: api/Situacoes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SituacoesModel>>> GetSituacoes()
+        public async Task<ActionResult<IEnumerable<DTOSituacoes>>> GetSituacoes()
         {
-            return await _context.Situacoes.ToListAsync();
+            return await _context.SITUACOES.ToListAsync();
         }
 
         // GET: api/Situacoes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<SituacoesModel>> GetSituacoesModel(int id)
+        public async Task<ActionResult<DTOSituacoes>> GetSituacoes(int id)
         {
-            var situacoesModel = await _context.Situacoes.FindAsync(id);
+            var situacoesModel = await _context.SITUACOES.FindAsync(id);
 
             if (situacoesModel == null)
             {
@@ -48,7 +48,7 @@ namespace API_SeeManga.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSituacoesModel(int id, SituacoesModel situacoesModel)
+        public async Task<IActionResult> PutSituacoes(int id, DTOSituacoes situacoesModel)
         {
             if (id != situacoesModel.ID_SITUACAO)
             {
@@ -63,7 +63,7 @@ namespace API_SeeManga.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SituacoesModelExists(id))
+                if (!SituacoesExists(id))
                 {
                     return NotFound();
                 }
@@ -80,9 +80,9 @@ namespace API_SeeManga.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<SituacoesModel>> PostSituacoesModel(SituacoesModel situacoesModel)
+        public async Task<ActionResult<DTOSituacoes>> PostSituacoes(DTOSituacoes situacoesModel)
         {
-            _context.Situacoes.Add(situacoesModel);
+            _context.SITUACOES.Add(situacoesModel);
             await _context.SaveChangesAsync();
 
             return situacoesModel;
@@ -90,23 +90,23 @@ namespace API_SeeManga.Controllers
 
         // DELETE: api/Situacoes/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<SituacoesModel>> DeleteSituacoesModel(int id)
+        public async Task<ActionResult<DTOSituacoes>> DeleteSituacoes(int id)
         {
-            var situacoesModel = await _context.Situacoes.FindAsync(id);
+            var situacoesModel = await _context.SITUACOES.FindAsync(id);
             if (situacoesModel == null)
             {
                 return NotFound();
             }
 
-            _context.Situacoes.Remove(situacoesModel);
+            _context.SITUACOES.Remove(situacoesModel);
             await _context.SaveChangesAsync();
 
             return situacoesModel;
         }
 
-        private bool SituacoesModelExists(int id)
+        private bool SituacoesExists(int id)
         {
-            return _context.Situacoes.Any(e => e.ID_SITUACAO == id);
+            return _context.SITUACOES.Any(e => e.ID_SITUACAO == id);
         }
     }
 }

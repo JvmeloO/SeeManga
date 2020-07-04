@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API_SeeManga.Data;
-using API_SeeManga.Models.Model;
+using API_SeeManga.DTO;
 using Microsoft.AspNetCore.Authorization;
 
 namespace API_SeeManga.Controllers
@@ -24,16 +24,16 @@ namespace API_SeeManga.Controllers
 
         // GET: api/Comentarios
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ComentariosModel>>> GetComentarios()
+        public async Task<ActionResult<IEnumerable<DTOComentarios>>> GetComentarios()
         {
-            return await _context.Comentarios.ToListAsync();
+            return await _context.COMENTARIOS.ToListAsync();
         }
 
         // GET: api/Comentarios/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ComentariosModel>> GetComentariosModel(int id)
+        public async Task<ActionResult<DTOComentarios>> GetComentarios(int id)
         {
-            var comentariosModel = await _context.Comentarios.FindAsync(id);
+            var comentariosModel = await _context.COMENTARIOS.FindAsync(id);
 
             if (comentariosModel == null)
             {
@@ -47,7 +47,7 @@ namespace API_SeeManga.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutComentariosModel(int id, ComentariosModel comentariosModel)
+        public async Task<IActionResult> PutComentarios(int id, DTOComentarios comentariosModel)
         {
             if (id != comentariosModel.ID_COMENTARIOS)
             {
@@ -62,7 +62,7 @@ namespace API_SeeManga.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ComentariosModelExists(id))
+                if (!ComentariosExists(id))
                 {
                     return NotFound();
                 }
@@ -79,9 +79,9 @@ namespace API_SeeManga.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<ComentariosModel>> PostComentariosModel(ComentariosModel comentariosModel)
+        public async Task<ActionResult<DTOComentarios>> PostComentarios(DTOComentarios comentariosModel)
         {
-            _context.Comentarios.Add(comentariosModel);
+            _context.COMENTARIOS.Add(comentariosModel);
             await _context.SaveChangesAsync();
 
             return comentariosModel;
@@ -89,23 +89,23 @@ namespace API_SeeManga.Controllers
 
         // DELETE: api/Comentarios/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ComentariosModel>> DeleteComentariosModel(int id)
+        public async Task<ActionResult<DTOComentarios>> DeleteComentarios(int id)
         {
-            var comentariosModel = await _context.Comentarios.FindAsync(id);
+            var comentariosModel = await _context.COMENTARIOS.FindAsync(id);
             if (comentariosModel == null)
             {
                 return NotFound();
             }
 
-            _context.Comentarios.Remove(comentariosModel);
+            _context.COMENTARIOS.Remove(comentariosModel);
             await _context.SaveChangesAsync();
 
             return comentariosModel;
         }
 
-        private bool ComentariosModelExists(int id)
+        private bool ComentariosExists(int id)
         {
-            return _context.Comentarios.Any(e => e.ID_COMENTARIOS == id);
+            return _context.COMENTARIOS.Any(e => e.ID_COMENTARIOS == id);
         }
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API_SeeManga.Data;
-using API_SeeManga.Models.Model;
+using API_SeeManga.DTO;
 using Microsoft.AspNetCore.Authorization;
 
 namespace API_SeeManga.Controllers
@@ -24,16 +24,16 @@ namespace API_SeeManga.Controllers
 
         // GET: api/Capitulos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CapitulosModel>>> GetCapitulos()
+        public async Task<ActionResult<IEnumerable<DTOCapitulos>>> GetCapitulos()
         {
-            return await _context.Capitulos.ToListAsync();
+            return await _context.CAPITULOS.ToListAsync();
         }
 
         // GET: api/Capitulos/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CapitulosModel>> GetCapitulosModel(int id)
+        public async Task<ActionResult<DTOCapitulos>> GetCapitulos(int id)
         {
-            var capitulosModel = await _context.Capitulos.FindAsync(id);
+            var capitulosModel = await _context.CAPITULOS.FindAsync(id);
 
             if (capitulosModel == null)
             {
@@ -47,7 +47,7 @@ namespace API_SeeManga.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]        
-        public async Task<IActionResult> PutCapitulosModel(int id, CapitulosModel capitulosModel)
+        public async Task<IActionResult> PutCapitulos(int id, DTOCapitulos capitulosModel)
         {
             if (id != capitulosModel.ID_CAPITULOS)
             {
@@ -62,7 +62,7 @@ namespace API_SeeManga.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CapitulosModelExists(id))
+                if (!CapitulosExists(id))
                 {
                     return NotFound();
                 }
@@ -79,9 +79,9 @@ namespace API_SeeManga.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<CapitulosModel>> PostCapitulosModel(CapitulosModel capitulosModel)
+        public async Task<ActionResult<DTOCapitulos>> PostCapitulos(DTOCapitulos capitulosModel)
         {
-            _context.Capitulos.Add(capitulosModel);
+            _context.CAPITULOS.Add(capitulosModel);
             await _context.SaveChangesAsync();
 
             return capitulosModel;
@@ -89,23 +89,23 @@ namespace API_SeeManga.Controllers
 
         // DELETE: api/Capitulos/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<CapitulosModel>> DeleteCapitulosModel(int id)
+        public async Task<ActionResult<DTOCapitulos>> DeleteCapitulos(int id)
         {
-            var capitulosModel = await _context.Capitulos.FindAsync(id);
+            var capitulosModel = await _context.CAPITULOS.FindAsync(id);
             if (capitulosModel == null)
             {
                 return NotFound();
             }
 
-            _context.Capitulos.Remove(capitulosModel);
+            _context.CAPITULOS.Remove(capitulosModel);
             await _context.SaveChangesAsync();
 
             return capitulosModel;
         }
 
-        private bool CapitulosModelExists(int id)
+        private bool CapitulosExists(int id)
         {
-            return _context.Capitulos.Any(e => e.ID_CAPITULOS == id);
+            return _context.CAPITULOS.Any(e => e.ID_CAPITULOS == id);
         }
     }
 }

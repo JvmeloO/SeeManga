@@ -8,7 +8,7 @@ namespace API_SeeManga.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Generos",
+                name: "GENEROS",
                 columns: table => new
                 {
                     ID_GENERO = table.Column<int>(nullable: false)
@@ -17,11 +17,11 @@ namespace API_SeeManga.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Generos", x => x.ID_GENERO);
+                    table.PrimaryKey("PK_GENEROS", x => x.ID_GENERO);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Situacoes",
+                name: "SITUACOES",
                 columns: table => new
                 {
                     ID_SITUACAO = table.Column<int>(nullable: false)
@@ -30,11 +30,11 @@ namespace API_SeeManga.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Situacoes", x => x.ID_SITUACAO);
+                    table.PrimaryKey("PK_SITUACOES", x => x.ID_SITUACAO);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Mangas",
+                name: "MANGAS",
                 columns: table => new
                 {
                     ID_MANGA = table.Column<int>(nullable: false)
@@ -46,17 +46,17 @@ namespace API_SeeManga.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Mangas", x => x.ID_MANGA);
+                    table.PrimaryKey("PK_MANGAS", x => x.ID_MANGA);
                     table.ForeignKey(
                         name: "FK_MANGA_SITUACAO",
                         column: x => x.ID_SITUACAO,
-                        principalTable: "Situacoes",
+                        principalTable: "SITUACOES",
                         principalColumn: "ID_SITUACAO",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Capitulos",
+                name: "CAPITULOS",
                 columns: table => new
                 {
                     ID_CAPITULOS = table.Column<int>(nullable: false)
@@ -67,17 +67,17 @@ namespace API_SeeManga.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Capitulos", x => x.ID_CAPITULOS);
+                    table.PrimaryKey("PK_CAPITULOS", x => x.ID_CAPITULOS);
                     table.ForeignKey(
                         name: "FK_CAPITULOS_MANGA",
                         column: x => x.ID_MANGA,
-                        principalTable: "Mangas",
+                        principalTable: "MANGAS",
                         principalColumn: "ID_MANGA",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comentarios",
+                name: "COMENTARIOS",
                 columns: table => new
                 {
                     ID_COMENTARIOS = table.Column<int>(nullable: false)
@@ -88,17 +88,17 @@ namespace API_SeeManga.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comentarios", x => x.ID_COMENTARIOS);
+                    table.PrimaryKey("PK_COMENTARIOS", x => x.ID_COMENTARIOS);
                     table.ForeignKey(
                         name: "FK_COMENTARIOS_MANGA",
                         column: x => x.ID_MANGA,
-                        principalTable: "Mangas",
+                        principalTable: "MANGAS",
                         principalColumn: "ID_MANGA",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Manga_Generos",
+                name: "MANGA_GENEROS",
                 columns: table => new
                 {
                     ID_MANGA = table.Column<int>(nullable: false),
@@ -106,23 +106,23 @@ namespace API_SeeManga.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Manga_Generos", x => new { x.ID_GENERO, x.ID_MANGA });
+                    table.PrimaryKey("PK_MANGA_GENEROS", x => new { x.ID_GENERO, x.ID_MANGA });
                     table.ForeignKey(
                         name: "FK_MANGA_GENEROS_GENERO",
                         column: x => x.ID_GENERO,
-                        principalTable: "Generos",
+                        principalTable: "GENEROS",
                         principalColumn: "ID_GENERO",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_MANGA_GENEROS_MANGA",
                         column: x => x.ID_MANGA,
-                        principalTable: "Mangas",
+                        principalTable: "MANGAS",
                         principalColumn: "ID_MANGA",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Paginas",
+                name: "PAGINAS",
                 columns: table => new
                 {
                     ID_PAGINAS = table.Column<int>(nullable: false)
@@ -133,63 +133,63 @@ namespace API_SeeManga.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Paginas", x => x.ID_PAGINAS);
+                    table.PrimaryKey("PK_PAGINAS", x => x.ID_PAGINAS);
                     table.ForeignKey(
-                        name: "FK_PAGINAS_CAPITULOS",
+                        name: "FK_PAGINAS_CAPITULO",
                         column: x => x.ID_CAPITULOS,
-                        principalTable: "Capitulos",
+                        principalTable: "CAPITULOS",
                         principalColumn: "ID_CAPITULOS",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Capitulos_ID_MANGA",
-                table: "Capitulos",
+                name: "IX_CAPITULOS_ID_MANGA",
+                table: "CAPITULOS",
                 column: "ID_MANGA");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comentarios_ID_MANGA",
-                table: "Comentarios",
+                name: "IX_COMENTARIOS_ID_MANGA",
+                table: "COMENTARIOS",
                 column: "ID_MANGA");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Manga_Generos_ID_MANGA",
-                table: "Manga_Generos",
+                name: "IX_MANGA_GENEROS_ID_MANGA",
+                table: "MANGA_GENEROS",
                 column: "ID_MANGA");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Mangas_ID_SITUACAO",
-                table: "Mangas",
+                name: "IX_MANGAS_ID_SITUACAO",
+                table: "MANGAS",
                 column: "ID_SITUACAO");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Paginas_ID_CAPITULOS",
-                table: "Paginas",
+                name: "IX_PAGINAS_ID_CAPITULOS",
+                table: "PAGINAS",
                 column: "ID_CAPITULOS");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Comentarios");
+                name: "COMENTARIOS");
 
             migrationBuilder.DropTable(
-                name: "Manga_Generos");
+                name: "MANGA_GENEROS");
 
             migrationBuilder.DropTable(
-                name: "Paginas");
+                name: "PAGINAS");
 
             migrationBuilder.DropTable(
-                name: "Generos");
+                name: "GENEROS");
 
             migrationBuilder.DropTable(
-                name: "Capitulos");
+                name: "CAPITULOS");
 
             migrationBuilder.DropTable(
-                name: "Mangas");
+                name: "MANGAS");
 
             migrationBuilder.DropTable(
-                name: "Situacoes");
+                name: "SITUACOES");
         }
     }
 }

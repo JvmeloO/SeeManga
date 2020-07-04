@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API_SeeManga.Data;
-using API_SeeManga.Models.Model;
+using API_SeeManga.DTO;
 using Microsoft.AspNetCore.Authorization;
 
 namespace API_SeeManga.Controllers
@@ -24,16 +24,16 @@ namespace API_SeeManga.Controllers
 
         // GET: api/Mangas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MangasModel>>> GetManga()
+        public async Task<ActionResult<IEnumerable<DTOMangas>>> GetManga()
         {
-            return await _context.Mangas.ToListAsync();
+            return await _context.MANGAS.ToListAsync();
         }
 
         // GET: api/Mangas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<MangasModel>> GetManga(int id)
+        public async Task<ActionResult<DTOMangas>> GetManga(int id)
         {
-            var mangaModel = await _context.Mangas.FindAsync(id);
+            var mangaModel = await _context.MANGAS.FindAsync(id);
 
             if (mangaModel == null)
             {
@@ -46,7 +46,7 @@ namespace API_SeeManga.Controllers
         // PUT: api/Mangas/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.        [HttpPut("{id}")]
-        public async Task<IActionResult> PutManga(int id, MangasModel mangaModel)
+        public async Task<IActionResult> PutManga(int id, DTOMangas mangaModel)
         {
             if (id != mangaModel.ID_MANGA)
             {
@@ -78,25 +78,36 @@ namespace API_SeeManga.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<MangasModel>> PostManga(MangasModel mangaModel)
+        public async Task<ActionResult<Manga_Generos>> PostManga(Manga_Generos manga_generos)
         {
-            _context.Mangas.Add(mangaModel);
+            _context.MANGAS.Add(manga_generos.DtoManga);
+            await _context.SaveChangesAsync();
+            foreach (var item in manga_generos.GenerosSelected)
+            {
+                var dtoManga_Generos = new DTOManga_Generos
+                {
+                    ID_MANGA = manga_generos.DtoManga.ID_MANGA,
+                    ID_GENERO = item
+                };
+
+                _context.MANGA_GENEROS.Add(dtoManga_Generos);
+            }
             await _context.SaveChangesAsync();
 
-            return mangaModel;
+            return manga_generos;
         }
 
         // DELETE: api/Mangas/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<MangasModel>> DeleteManga(int id)
+        public async Task<ActionResult<DTOMangas>> DeleteManga(int id)
         {
-            var mangaModel = await _context.Mangas.FindAsync(id);
+            var mangaModel = await _context.MANGAS.FindAsync(id);
             if (mangaModel == null)
             {
                 return NotFound();
             }
 
-            _context.Mangas.Remove(mangaModel);
+            _context.MANGAS.Remove(mangaModel);
             await _context.SaveChangesAsync();
 
             return mangaModel;
@@ -104,7 +115,7 @@ namespace API_SeeManga.Controllers
 
         private bool MangaExists(int id)
         {
-            return _context.Mangas.Any(e => e.ID_MANGA == id);
+            return _context.MANGAS.Any(e => e.ID_MANGA == id);
         }
     }
 }

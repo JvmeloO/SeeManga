@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API_SeeManga.Data;
-using API_SeeManga.Models.Model;
+using API_SeeManga.DTO;
 using Microsoft.AspNetCore.Authorization;
 
 namespace API_SeeManga.Controllers
@@ -25,16 +25,16 @@ namespace API_SeeManga.Controllers
 
         // GET: api/Paginas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PaginasModel>>> GetPaginas()
+        public async Task<ActionResult<IEnumerable<DTOPaginas>>> GetPaginas()
         {
-            return await _context.Paginas.ToListAsync();
+            return await _context.PAGINAS.ToListAsync();
         }
 
         // GET: api/Paginas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PaginasModel>> GetPaginasModel(int id)
+        public async Task<ActionResult<DTOPaginas>> GetPaginas(int id)
         {
-            var paginasModel = await _context.Paginas.FindAsync(id);
+            var paginasModel = await _context.PAGINAS.FindAsync(id);
 
             if (paginasModel == null)
             {
@@ -48,7 +48,7 @@ namespace API_SeeManga.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPaginasModel(int id, PaginasModel paginasModel)
+        public async Task<IActionResult> PutPaginas(int id, DTOPaginas paginasModel)
         {
             if (id != paginasModel.ID_PAGINAS)
             {
@@ -63,7 +63,7 @@ namespace API_SeeManga.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PaginasModelExists(id))
+                if (!PaginasExists(id))
                 {
                     return NotFound();
                 }
@@ -80,9 +80,9 @@ namespace API_SeeManga.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<PaginasModel>> PostPaginasModel(PaginasModel paginasModel)
+        public async Task<ActionResult<DTOPaginas>> PostPaginas(DTOPaginas paginasModel)
         {
-            _context.Paginas.Add(paginasModel);
+            _context.PAGINAS.Add(paginasModel);
             await _context.SaveChangesAsync();
 
             return paginasModel;
@@ -90,23 +90,23 @@ namespace API_SeeManga.Controllers
 
         // DELETE: api/Paginas/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<PaginasModel>> DeletePaginasModel(int id)
+        public async Task<ActionResult<DTOPaginas>> DeletePaginas(int id)
         {
-            var paginasModel = await _context.Paginas.FindAsync(id);
+            var paginasModel = await _context.PAGINAS.FindAsync(id);
             if (paginasModel == null)
             {
                 return NotFound();
             }
 
-            _context.Paginas.Remove(paginasModel);
+            _context.PAGINAS.Remove(paginasModel);
             await _context.SaveChangesAsync();
 
             return paginasModel;
         }
 
-        private bool PaginasModelExists(int id)
+        private bool PaginasExists(int id)
         {
-            return _context.Paginas.Any(e => e.ID_PAGINAS == id);
+            return _context.PAGINAS.Any(e => e.ID_PAGINAS == id);
         }
     }
 }

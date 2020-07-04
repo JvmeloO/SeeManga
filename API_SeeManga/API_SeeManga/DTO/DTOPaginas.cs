@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace API_SeeManga.Models.Model
+namespace API_SeeManga.DTO
 {
-    public class PaginasModel
+    public class DTOPaginas
     {
         [Key]
         public int ID_PAGINAS { get; set; }
@@ -20,7 +20,7 @@ namespace API_SeeManga.Models.Model
         [Required]
         public int ID_CAPITULOS { get; set; }
 
-        public CapitulosModel Capitulo { get; set; }
+        public DTOCapitulos Capitulo { get; set; }
 
     }
 }

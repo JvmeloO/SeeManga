@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace API_SeeManga.Models.Model
+namespace API_SeeManga.DTO
 {
-    public class ComentariosModel
+    public class DTOComentarios
     {
         [Key]
         public int ID_COMENTARIOS { get; set; }
@@ -21,6 +21,6 @@ namespace API_SeeManga.Models.Model
         [Required]
         public int ID_MANGA { get; set; }
 
-        public MangasModel Manga { get; set; }
+        public DTOMangas Manga { get; set; }
     }
 }

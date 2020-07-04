@@ -620,7 +620,6 @@ D:\Git\SeeManga\API_SeeManga\API_SeeManga\bin\Debug\netcoreapp3.1\runtimes\win-x
 D:\Git\SeeManga\API_SeeManga\API_SeeManga\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\Git\SeeManga\API_SeeManga\API_SeeManga\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\Git\SeeManga\API_SeeManga\API_SeeManga\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\Git\SeeManga\API_SeeManga\API_SeeManga\obj\Debug\netcoreapp3.1\API_SeeManga.csprojAssemblyReference.cache
 D:\Git\SeeManga\API_SeeManga\API_SeeManga\obj\Debug\netcoreapp3.1\API_SeeManga.AssemblyInfoInputs.cache
 D:\Git\SeeManga\API_SeeManga\API_SeeManga\obj\Debug\netcoreapp3.1\API_SeeManga.AssemblyInfo.cs
 D:\Git\SeeManga\API_SeeManga\API_SeeManga\obj\Debug\netcoreapp3.1\API_SeeManga.csproj.CoreCompileInputs.cache

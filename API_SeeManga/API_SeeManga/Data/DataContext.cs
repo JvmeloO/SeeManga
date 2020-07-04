@@ -1,4 +1,4 @@
-﻿using API_SeeManga.Models.Model;
+﻿using API_SeeManga.DTO;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,19 +10,19 @@ namespace API_SeeManga.Data
 {
     public class DataContext : DbContext
     {
-        public DbSet<CapitulosModel> Capitulos { get; set; }
+        public DbSet<DTOCapitulos> CAPITULOS { get; set; }
 
-        public DbSet<ComentariosModel> Comentarios { get; set; }
+        public DbSet<DTOComentarios> COMENTARIOS { get; set; }
 
-        public DbSet<MangasModel> Mangas { get; set; }
+        public DbSet<DTOMangas> MANGAS { get; set; }
 
-        public DbSet<PaginasModel> Paginas { get; set; }
+        public DbSet<DTOPaginas> PAGINAS { get; set; }
 
-        public DbSet<SituacoesModel> Situacoes { get; set; }
+        public DbSet<DTOSituacoes> SITUACOES { get; set; }
 
-        public DbSet<GenerosModel> Generos { get; set; }
+        public DbSet<DTOGeneros> GENEROS { get; set; }
         
-        public DbSet<Manga_GenerosModel> Manga_Generos { get; set; }
+        public DbSet<DTOManga_Generos> MANGA_GENEROS { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -33,7 +33,7 @@ namespace API_SeeManga.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<CapitulosModel>(entity =>
+            modelBuilder.Entity<DTOCapitulos>(entity =>
             {
                 entity.HasOne(c => c.Manga)
                       .WithMany(s => s.Capitulos)
@@ -43,7 +43,7 @@ namespace API_SeeManga.Data
 
             });
 
-            modelBuilder.Entity<ComentariosModel>(entity =>
+            modelBuilder.Entity<DTOComentarios>(entity =>
             {
                 entity.HasOne(m => m.Manga)
                       .WithMany(c => c.Comentarios)
@@ -52,7 +52,7 @@ namespace API_SeeManga.Data
                       .HasConstraintName("FK_COMENTARIOS_MANGA");
             });
 
-            modelBuilder.Entity<MangasModel>(entity =>
+            modelBuilder.Entity<DTOMangas>(entity =>
             {
                 entity.HasOne(s => s.Situacao)
                       .WithMany(m => m.Mangas)
@@ -61,16 +61,16 @@ namespace API_SeeManga.Data
                       .HasConstraintName("FK_MANGA_SITUACAO");
             });
 
-            modelBuilder.Entity<PaginasModel>(entity =>
+            modelBuilder.Entity<DTOPaginas>(entity =>
             {
                 entity.HasOne(c => c.Capitulo)
                       .WithMany(p => p.Paginas)
                       .HasForeignKey(c => c.ID_CAPITULOS)
                       .OnDelete(DeleteBehavior.ClientSetNull)
-                      .HasConstraintName("FK_PAGINAS_CAPITULOS");
+                      .HasConstraintName("FK_PAGINAS_CAPITULO");
             });
 
-            modelBuilder.Entity<Manga_GenerosModel>(entity =>
+            modelBuilder.Entity<DTOManga_Generos>(entity =>
             {
                 entity.HasKey(i => new { i.ID_GENERO, i.ID_MANGA });
 

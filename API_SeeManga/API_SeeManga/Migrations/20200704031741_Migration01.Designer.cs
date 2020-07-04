@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API_SeeManga.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200627081403_Migration01")]
+    [Migration("20200704031741_Migration01")]
     partial class Migration01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace API_SeeManga.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("API_SeeManga.Models.Model.CapitulosModel", b =>
+            modelBuilder.Entity("API_SeeManga.DTO.DTOCapitulos", b =>
                 {
                     b.Property<int>("ID_CAPITULOS")
                         .ValueGeneratedOnAdd()
@@ -41,10 +41,10 @@ namespace API_SeeManga.Migrations
 
                     b.HasIndex("ID_MANGA");
 
-                    b.ToTable("Capitulos");
+                    b.ToTable("CAPITULOS");
                 });
 
-            modelBuilder.Entity("API_SeeManga.Models.Model.ComentariosModel", b =>
+            modelBuilder.Entity("API_SeeManga.DTO.DTOComentarios", b =>
                 {
                     b.Property<int>("ID_COMENTARIOS")
                         .ValueGeneratedOnAdd()
@@ -66,10 +66,10 @@ namespace API_SeeManga.Migrations
 
                     b.HasIndex("ID_MANGA");
 
-                    b.ToTable("Comentarios");
+                    b.ToTable("COMENTARIOS");
                 });
 
-            modelBuilder.Entity("API_SeeManga.Models.Model.GenerosModel", b =>
+            modelBuilder.Entity("API_SeeManga.DTO.DTOGeneros", b =>
                 {
                     b.Property<int>("ID_GENERO")
                         .ValueGeneratedOnAdd()
@@ -83,10 +83,10 @@ namespace API_SeeManga.Migrations
 
                     b.HasKey("ID_GENERO");
 
-                    b.ToTable("Generos");
+                    b.ToTable("GENEROS");
                 });
 
-            modelBuilder.Entity("API_SeeManga.Models.Model.Manga_GenerosModel", b =>
+            modelBuilder.Entity("API_SeeManga.DTO.DTOManga_Generos", b =>
                 {
                     b.Property<int>("ID_GENERO")
                         .HasColumnType("int");
@@ -98,10 +98,10 @@ namespace API_SeeManga.Migrations
 
                     b.HasIndex("ID_MANGA");
 
-                    b.ToTable("Manga_Generos");
+                    b.ToTable("MANGA_GENEROS");
                 });
 
-            modelBuilder.Entity("API_SeeManga.Models.Model.MangasModel", b =>
+            modelBuilder.Entity("API_SeeManga.DTO.DTOMangas", b =>
                 {
                     b.Property<int>("ID_MANGA")
                         .ValueGeneratedOnAdd()
@@ -129,10 +129,10 @@ namespace API_SeeManga.Migrations
 
                     b.HasIndex("ID_SITUACAO");
 
-                    b.ToTable("Mangas");
+                    b.ToTable("MANGAS");
                 });
 
-            modelBuilder.Entity("API_SeeManga.Models.Model.PaginasModel", b =>
+            modelBuilder.Entity("API_SeeManga.DTO.DTOPaginas", b =>
                 {
                     b.Property<int>("ID_PAGINAS")
                         .ValueGeneratedOnAdd()
@@ -153,10 +153,10 @@ namespace API_SeeManga.Migrations
 
                     b.HasIndex("ID_CAPITULOS");
 
-                    b.ToTable("Paginas");
+                    b.ToTable("PAGINAS");
                 });
 
-            modelBuilder.Entity("API_SeeManga.Models.Model.SituacoesModel", b =>
+            modelBuilder.Entity("API_SeeManga.DTO.DTOSituacoes", b =>
                 {
                     b.Property<int>("ID_SITUACAO")
                         .ValueGeneratedOnAdd()
@@ -170,57 +170,57 @@ namespace API_SeeManga.Migrations
 
                     b.HasKey("ID_SITUACAO");
 
-                    b.ToTable("Situacoes");
+                    b.ToTable("SITUACOES");
                 });
 
-            modelBuilder.Entity("API_SeeManga.Models.Model.CapitulosModel", b =>
+            modelBuilder.Entity("API_SeeManga.DTO.DTOCapitulos", b =>
                 {
-                    b.HasOne("API_SeeManga.Models.Model.MangasModel", "Manga")
+                    b.HasOne("API_SeeManga.DTO.DTOMangas", "Manga")
                         .WithMany("Capitulos")
                         .HasForeignKey("ID_MANGA")
                         .HasConstraintName("FK_CAPITULOS_MANGA")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("API_SeeManga.Models.Model.ComentariosModel", b =>
+            modelBuilder.Entity("API_SeeManga.DTO.DTOComentarios", b =>
                 {
-                    b.HasOne("API_SeeManga.Models.Model.MangasModel", "Manga")
+                    b.HasOne("API_SeeManga.DTO.DTOMangas", "Manga")
                         .WithMany("Comentarios")
                         .HasForeignKey("ID_MANGA")
                         .HasConstraintName("FK_COMENTARIOS_MANGA")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("API_SeeManga.Models.Model.Manga_GenerosModel", b =>
+            modelBuilder.Entity("API_SeeManga.DTO.DTOManga_Generos", b =>
                 {
-                    b.HasOne("API_SeeManga.Models.Model.GenerosModel", "Genero")
+                    b.HasOne("API_SeeManga.DTO.DTOGeneros", "Genero")
                         .WithMany("Manga_generos")
                         .HasForeignKey("ID_GENERO")
                         .HasConstraintName("FK_MANGA_GENEROS_GENERO")
                         .IsRequired();
 
-                    b.HasOne("API_SeeManga.Models.Model.MangasModel", "Manga")
+                    b.HasOne("API_SeeManga.DTO.DTOMangas", "Manga")
                         .WithMany("Manga_generos")
                         .HasForeignKey("ID_MANGA")
                         .HasConstraintName("FK_MANGA_GENEROS_MANGA")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("API_SeeManga.Models.Model.MangasModel", b =>
+            modelBuilder.Entity("API_SeeManga.DTO.DTOMangas", b =>
                 {
-                    b.HasOne("API_SeeManga.Models.Model.SituacoesModel", "Situacao")
+                    b.HasOne("API_SeeManga.DTO.DTOSituacoes", "Situacao")
                         .WithMany("Mangas")
                         .HasForeignKey("ID_SITUACAO")
                         .HasConstraintName("FK_MANGA_SITUACAO")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("API_SeeManga.Models.Model.PaginasModel", b =>
+            modelBuilder.Entity("API_SeeManga.DTO.DTOPaginas", b =>
                 {
-                    b.HasOne("API_SeeManga.Models.Model.CapitulosModel", "Capitulo")
+                    b.HasOne("API_SeeManga.DTO.DTOCapitulos", "Capitulo")
                         .WithMany("Paginas")
                         .HasForeignKey("ID_CAPITULOS")
-                        .HasConstraintName("FK_PAGINAS_CAPITULOS")
+                        .HasConstraintName("FK_PAGINAS_CAPITULO")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

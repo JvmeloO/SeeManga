@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace API_SeeManga.Models.Model
+namespace API_SeeManga.DTO
 {
-    public class GenerosModel
+    public class DTOGeneros
     {
         [Key]
         public int ID_GENERO { get; set; }
@@ -15,6 +15,6 @@ namespace API_SeeManga.Models.Model
         [MaxLength(30)]
         public string NM_GENERO { get; set; }
         
-        public virtual ICollection<Manga_GenerosModel> Manga_generos { get; set; }
+        public virtual ICollection<DTOManga_Generos> Manga_generos { get; set; }
     }
 }
