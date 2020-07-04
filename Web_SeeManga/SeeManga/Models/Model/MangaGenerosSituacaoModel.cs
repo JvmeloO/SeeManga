@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using SeeManga.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,19 +11,19 @@ namespace SeeManga.Models.Model
 {
     public class MangaGenerosSituacaoModel
     {
-        public DTOManga DtoManga { get; set; }
-
-        [Required]
-        public List<int> GenerosSelected { get; set; }
+        public DTOMangas DtoManga { get; set; }
 
         [Required]
         public List<IFormFile> Capa { get; set; }
 
-        public DTOSituacao DtoSituacao { get; set; }
+        [Required]
+        public List<int> GenerosSelected { get; set; }
 
-        public IEnumerable<DTOGenero> ListDtoGenero { get; set; } 
+        public DTOSituacoes DtoSituacao { get; set; }
 
-        public IEnumerable<DTOSituacao> ListDtoSituacao { get; set; }
+        public IEnumerable<DTOGeneros> ListDtoGenero { get; set; } 
+
+        public IEnumerable<DTOSituacoes> ListDtoSituacao { get; set; }
 
         public List<SelectListItem> GetGeneros()
         {

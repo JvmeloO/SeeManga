@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SeeManga.Models
+namespace SeeManga.Models.DTO
 {
     public class DTOManga_Generos
     {

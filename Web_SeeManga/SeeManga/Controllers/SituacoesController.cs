@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using SeeManga.Models;
+using SeeManga.Models.DTO;
 using SeeManga.Models.Model;
 
 namespace SeeManga.Controllers
@@ -30,7 +30,7 @@ namespace SeeManga.Controllers
             try
             {
                 var response = await client.GetAsync($"{urlApi}/Situacoes");
-                var responseData = JsonConvert.DeserializeObject<IEnumerable<DTOSituacao>>(await response.Content.ReadAsStringAsync());
+                var responseData = JsonConvert.DeserializeObject<IEnumerable<DTOSituacoes>>(await response.Content.ReadAsStringAsync());
 
                 if (responseData.Count() == 0)
                 {
@@ -47,7 +47,7 @@ namespace SeeManga.Controllers
             }
         }
 
-        public async Task<IActionResult> AdicionarSituacao(DTOSituacao dtoSituacao)
+        public async Task<IActionResult> AdicionarSituacao(DTOSituacoes dtoSituacao)
         {
             if (!ModelState.IsValid)
             {
@@ -72,14 +72,14 @@ namespace SeeManga.Controllers
         public async Task<JsonResult> GetEditarSituacao(int id)
         {
             var response = await client.GetAsync($"{urlApi}/Situacoes/{id}");
-            var responseData = JsonConvert.DeserializeObject<DTOSituacao>(await response.Content.ReadAsStringAsync());
+            var responseData = JsonConvert.DeserializeObject<DTOSituacoes>(await response.Content.ReadAsStringAsync());
 
             var responseJson = JsonConvert.SerializeObject(responseData);
 
             return Json(responseJson);
         }
 
-        public async Task<IActionResult> EditarSituacao(DTOSituacao dtoSituacao)
+        public async Task<IActionResult> EditarSituacao(DTOSituacoes dtoSituacao)
         {
             try
             {

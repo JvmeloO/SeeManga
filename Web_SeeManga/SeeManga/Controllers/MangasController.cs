@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using SeeManga.Models;
+using SeeManga.Models.DTO;
 using SeeManga.Models.Model;
 
 namespace SeeManga.Controllers
@@ -33,20 +33,20 @@ namespace SeeManga.Controllers
             try
             {
                 var response = await client.GetAsync($"{urlApi}/Mangas");
-                var responseData = JsonConvert.DeserializeObject<IEnumerable<DTOManga>>(await response.Content.ReadAsStringAsync());
+                var responseData = JsonConvert.DeserializeObject<IEnumerable<DTOMangas>>(await response.Content.ReadAsStringAsync());
 
                 if (responseData.Count() == 0)
                 {
                     return View(mangaModel);
                 }
 
-                var listDtoManga = new List<DTOManga>();
+                var listDtoManga = new List<DTOMangas>();
                 foreach (var item in responseData)
                 {
                     var base64 = Convert.ToBase64String(item.CAPA);
                     var img = String.Format("data:image/gif;base64,{0}", base64);
 
-                    var dtoManga = new DTOManga()
+                    var dtoManga = new DTOMangas()
                     {
                         ID_MANGA = item.ID_MANGA,
                         ID_SITUACAO = item.ID_SITUACAO,
@@ -75,8 +75,8 @@ namespace SeeManga.Controllers
             {
                 var responseG = await client.GetAsync($"{urlApi}/Generos");
                 var responseS = await client.GetAsync($"{urlApi}/Situacoes");
-                var responseDataG = JsonConvert.DeserializeObject<IEnumerable<DTOGenero>>(await responseG.Content.ReadAsStringAsync());
-                var responseDataS = JsonConvert.DeserializeObject<IEnumerable<DTOSituacao>>(await responseS.Content.ReadAsStringAsync());
+                var responseDataG = JsonConvert.DeserializeObject<IEnumerable<DTOGeneros>>(await responseG.Content.ReadAsStringAsync());
+                var responseDataS = JsonConvert.DeserializeObject<IEnumerable<DTOSituacoes>>(await responseS.Content.ReadAsStringAsync());
 
                 model.ListDtoGenero = responseDataG;
                 model.ListDtoSituacao = responseDataS;
@@ -108,9 +108,15 @@ namespace SeeManga.Controllers
 
             try
             {
-                var json = JsonConvert.SerializeObject(modelManga.DtoManga);
+                var manga_generos = new Manga_Generos
+                {
+                    DtoManga = modelManga.DtoManga,
+                    GenerosSelected = modelManga.GenerosSelected
+                };
+
+                var json = JsonConvert.SerializeObject(manga_generos);
                 var contentString = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync($"{urlApi}/Mangas", contentString);
+                var response = await client.PostAsync($"{urlApi}/Mangas", contentString);           
 
                 return RedirectToAction("Index");
             }

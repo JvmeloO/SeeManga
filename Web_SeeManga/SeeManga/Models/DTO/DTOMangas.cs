@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SeeManga.Models
+namespace SeeManga.Models.DTO
 {
-    public class DTOManga
+    public class DTOMangas
     {
         [Key]
         public int ID_MANGA { get; set; }
@@ -23,17 +23,16 @@ namespace SeeManga.Models
         public byte[] CAPA { get; set; }
 
         [Required]
-        public int ID_SITUACAO { get; set; }
+        public int ID_SITUACAO { get; set; }        
 
+        public string CAPABASE64 { get; set; }        
 
-        public string CAPABASE64 { get; set; }
+        //public virtual SituacoesModel Situacao { get; set; }
 
-        //    public virtual SituacoesModel Situacoes { get; set; }
+        //public virtual ICollection<Manga_GenerosModel> Manga_generos { get; set; }
 
-        //    public virtual ICollection<CapitulosModel> Capitulos { get; set; }
+        //public virtual ICollection<CapitulosModel> Capitulos { get; set; }
 
-        //    public virtual ICollection<ComentariosModel> Comentarios { get; set; }
-
-        //    public virtual ICollection<SeguirModel> Seguir { get; set; }
+        //public virtual ICollection<ComentariosModel> Comentarios { get; set; }
     }
 }

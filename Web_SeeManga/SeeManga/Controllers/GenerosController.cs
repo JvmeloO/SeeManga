@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using SeeManga.Models;
+using SeeManga.Models.DTO;
 using SeeManga.Models.Model;
 
 namespace SeeManga.Controllers
@@ -31,7 +31,7 @@ namespace SeeManga.Controllers
             try
             {
                 var response = await client.GetAsync($"{urlApi}/Generos");
-                var responseData = JsonConvert.DeserializeObject<IEnumerable<DTOGenero>>(await response.Content.ReadAsStringAsync());
+                var responseData = JsonConvert.DeserializeObject<IEnumerable<DTOGeneros>>(await response.Content.ReadAsStringAsync());
 
                 if (responseData.Count() == 0)
                 {
@@ -48,7 +48,7 @@ namespace SeeManga.Controllers
             }
         }
 
-        public async Task<IActionResult> AdicionarGenero(DTOGenero dtoGenero) 
+        public async Task<IActionResult> AdicionarGenero(DTOGeneros dtoGenero) 
         {
             if (!ModelState.IsValid)
             {
@@ -73,14 +73,14 @@ namespace SeeManga.Controllers
         public async Task<JsonResult> GetEditarGenero(int id) 
         {
             var response = await client.GetAsync($"{urlApi}/Generos/{id}");
-            var responseData = JsonConvert.DeserializeObject<DTOGenero>(await response.Content.ReadAsStringAsync());
+            var responseData = JsonConvert.DeserializeObject<DTOGeneros>(await response.Content.ReadAsStringAsync());
 
             var responseJson = JsonConvert.SerializeObject(responseData);
 
             return Json(responseJson);
         }
 
-        public async Task<IActionResult> EditarGenero(DTOGenero dtoGenero) 
+        public async Task<IActionResult> EditarGenero(DTOGeneros dtoGenero) 
         {
             try
             {

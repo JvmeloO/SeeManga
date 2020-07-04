@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SeeManga.Models
+namespace SeeManga.Models.DTO
 {
-    public class DTOGenero
+    public class DTOGeneros
     {
         [Key]
         public int ID_GENERO { get; set; }
