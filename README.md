@@ -5,11 +5,12 @@ Sua biblioteca pessoal de mangás.
 SeeManga é uma aplicação web feito para organizar, ler e guardar seus mangás em um banco de dados local.
 
 # Tecnologias
-- C# Entity Framework core
+- C# Entity Framework Core
 - SQL Server
-- HTML, Web Pages Razor e CSS 
-- Webservices
+- Web Pages Razor (HTML, CSS e C#)
+- Webservices (API)
 - Javascript
+
 
 
 
